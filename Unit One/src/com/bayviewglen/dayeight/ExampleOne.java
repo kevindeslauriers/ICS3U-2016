@@ -1,6 +1,6 @@
 package com.bayviewglen.dayeight;
 
-public class ExmapleOne {
+public class ExampleOne {
 
 	public static void main(String[] args) {
 		byte x = 0b01111111;
