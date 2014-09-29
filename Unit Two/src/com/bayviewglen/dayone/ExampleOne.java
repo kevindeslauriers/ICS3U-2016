@@ -23,7 +23,7 @@ public class ExampleOne {
 		System.out.println(y);
 		System.out.println(Math.abs(y));
 		
-		System.out.println(z);
+		System.out.println(z); // comment
 		System.out.println(Math.abs(z));
 		
 		System.out.println(Math.sqrt(z));
