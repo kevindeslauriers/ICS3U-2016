@@ -10,8 +10,8 @@ public class ExampleOne {
 		final int UPPER_CASE_A = 65;
 		
 		char letter = (char)((int)(Math.random()*NUM_OF_LETTERS)+UPPER_CASE_A);
-		
-		System.out.print("The random letter is: " + letter);
+
+		System.out.println("The random letter is: " + letter);
 
 	}
 
