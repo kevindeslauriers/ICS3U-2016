@@ -12,9 +12,6 @@ public class ExampleOne {
 		char letter = (char)((int)(Math.random()*NUM_OF_LETTERS)+UPPER_CASE_A);
 		
 		System.out.print("The random letter is: " + letter);
-		letter = (char)((int)(Math.random()*NUM_OF_LETTERS)+UPPER_CASE_A);
-				
-		System.out.print(letter);
 
 	}
 
