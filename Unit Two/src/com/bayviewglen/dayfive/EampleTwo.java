@@ -10,7 +10,7 @@ public class EampleTwo {
 
 	public static void main(String[] args) {
 		NumberFormat moneyFormatter = NumberFormat.getCurrencyInstance();
-		double x = 23.4456545;
+		double x = 23.4476545;
 		
 		System.out.println(moneyFormatter.format(x));
 		
