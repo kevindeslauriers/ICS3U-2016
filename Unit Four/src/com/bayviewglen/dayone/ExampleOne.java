@@ -11,16 +11,14 @@ import java.util.Scanner;
 public class ExampleOne {
 
 	public static void main(String[] args) {
-		// Prompt the usrer for two numbers
 		Scanner keyboard = new Scanner(System.in);
-
-		System.out.print("Hey user give me two numbers, please: ");
+		
+		System.out.print("Two numbers please: ");
 		int x = keyboard.nextInt();
 		int y = keyboard.nextInt();
 		
 		int low, high;
-		
-		if (x>y){
+		if (x > y){
 			low = y;
 			high = x;
 		}else{
@@ -29,11 +27,11 @@ public class ExampleOne {
 		}
 		
 		int sum = 0;
-		while(low<=high){
-			sum+=low;	// sum = sum + low;
-			low++;		// low = low + 1;
+		int i = low;
+		while(i<=high){
+			sum += i;
+			i++;
 		}
-		
 		System.out.println(sum);
 		
 	}
