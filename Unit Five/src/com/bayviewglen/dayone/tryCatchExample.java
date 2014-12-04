@@ -9,16 +9,19 @@ public class tryCatchExample {
 		boolean validInput = false;
 		Scanner s = new Scanner (System.in);
 		
+
 		while(!validInput ){
 			System.out.print("Enter an integer: ");
-			String temp = s.nextLine();
+			int temp = s.nextInt();
 			int number = 0;
-			try{
+			
+			/*try{
 				number = Integer.parseInt(temp);
 				validInput = true;
 			}catch(NumberFormatException ex){
 				System.out.println(temp + " is not a number on earth in any language.");
 			}
+			*/
 		}
 		
 		System.out.println("I am happy!!!!");
