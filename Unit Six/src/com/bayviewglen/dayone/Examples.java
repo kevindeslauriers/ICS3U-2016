@@ -57,7 +57,7 @@ public class Examples {
 		}
 			
 		return -1;
-	}
+	}	
 	
 	public static int search(int findMe, int[] array){
 		
