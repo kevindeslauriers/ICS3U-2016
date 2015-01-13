@@ -12,6 +12,7 @@ public class Examples {
 
 	public static void main(String[] args) {
 		int[] numbers = {1,2,3,4,5,6,7,8,9,10};
+		
 		ArrayList<Integer> numbers2 = new ArrayList<Integer>();
 		
 		
@@ -22,11 +23,16 @@ public class Examples {
 		numbers2.add(44);
 		numbers2.add(54);
 		numbers2.add(64);
-		/*
+		
+		
+		for (int element : numbers2){
+			numbers2.set(3, 23);
+		} // is okay!  I can modify an element
+		
+
 		for (int element : numbers2){
 			numbers2.remove(2);
-		} // causes an error
-		*/
+		} // is not okay!  I cannot modify (ie. remove elements)
 		
 		// foreach loop - cannot MODIFY THE Collection
 		display(numbers);
@@ -40,8 +46,8 @@ public class Examples {
 	public static void display(int[] arr){
 		System.out.println("---");
 		System.out.println("Display Starting");
-		for (int element : arr){
-			System.out.println(element);
+		for (int e : arr){
+			System.out.println(e);
 		}
 		System.out.println("Display Ending");
 		System.out.println("---\n");
