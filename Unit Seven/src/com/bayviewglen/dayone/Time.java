@@ -5,36 +5,32 @@ import java.text.DecimalFormat;
 public class Time {
 	private int minutes;
 	private double seconds;
+	private static DecimalFormat milliSecondFormatter = new DecimalFormat("00.000");
 	
-	private static final DecimalFormat millisecondFormatter = new DecimalFormat("00.000");
-	
-	public Time(int minutes, double seconds){	// a constructor called when class is instantiated.
+	public Time(int minutes, double seconds) {
 		this.minutes = minutes;
 		this.seconds = seconds;
 	}
 	
-	public Time(){								// a constructor called when class is instantiated (default).
-		this.minutes = 0;
-		this.seconds = 0;
+	public Time(String timeAsString){
+		try{
+			String[] temp = timeAsString.split(":");
+			minutes = Integer.parseInt(temp[0]);
+			seconds = Double.parseDouble(temp[1]);
+		}catch(Exception ex){
+			throw new IllegalArgumentException(timeAsString + " is not in the format mm:ss.sss");
+		}
+	}
+	
+	private Time(){
+		
 	}
 	
 	public Time(double timeInSeconds) {
 		this.minutes = (int)timeInSeconds / 60;
-		this.seconds = timeInSeconds - this.minutes * 60;	
+		this.seconds = timeInSeconds - this.minutes * 60;
 	}
-	
-	// the string should be in the format of minutes:seconds
-	public Time(String timeAsString){
-		try{
-			String[] parts = timeAsString.split(":");
-			this.minutes = Integer.parseInt(parts[0]);
-			this.seconds = Double.parseDouble(parts[1]);
-		}catch(Exception ex){
-			throw new IllegalArgumentException(timeAsString + " is not in the format of minutes:seconds." );
-		}
-		
-	}
-	
+
 	public int getMinutes() {
 		return minutes;
 	}
@@ -48,19 +44,18 @@ public class Time {
 		this.seconds = seconds;
 	}
 	
-	public String displayTime(){
-		return minutes + ":" + millisecondFormatter.format(seconds);
+	public static Time difference(Time t2, Time t1){
+		double diff = convertToSeconds(t2) - convertToSeconds(t1);
+		
+		return new Time(diff);
 	}
 	
-	public Time difference(Time t1, Time t2){
-		double timeInSeconds = convertToSeconds(t2) - convertToSeconds(t1); 
-		return new Time(timeInSeconds);
-	}
-	
-	private double convertToSeconds(Time t){
+	private static double convertToSeconds(Time t){
 		return t.minutes * 60 + t.seconds;
 	}
 	
-	
+	public String toString(){
+		return minutes + ":" + milliSecondFormatter.format(seconds);
+	}
 	
 }
