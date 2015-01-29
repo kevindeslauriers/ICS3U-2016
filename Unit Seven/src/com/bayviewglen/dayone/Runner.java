@@ -50,6 +50,14 @@ public class Runner {
 		return firstName + " " + lastName;
 	}
 
+	public void setTime(int index, Time t) {
+		times[index] = t;
+	}
+
+	public Time getTime(int index) {
+		return times[index];
+	}
+	
 	public String toString(){
 		String s = "Name: " + getName() + "\n";
 		s += "Split One: " + times[SPLIT_ONE] + "\n";
@@ -67,20 +75,23 @@ public class Runner {
 		r.setName(name);
 		
 		System.out.print("Please enter mile one time (mm:ss.sss): ");
-		this.times[Runner.MILE_ONE] = new Time(s.nextLine());
-
+		Time t = new Time(s.nextLine());
+		r.setTime(Runner.MILE_ONE, t);
+		
 		System.out.print("Please enter mile two time (mm:ss.sss): ");
-		this.times[Runner.MILE_TWO] = new Time(s.nextLine());
+		t = new Time(s.nextLine());
+		r.setTime(Runner.MILE_TWO, t);
 		
 		System.out.print("Please enter final time (mm:ss.sss): ");
-		this.times[Runner.FINAL] = new Time(s.nextLine());
+		t = new Time(s.nextLine());
+		r.setTime(Runner.FINAL, t);
 		r.processSplits();
 		return r;
 	}
 	
 	private void processSplits() {
-		setTime(Runner.SPLIT_TWO, Time.difference(times[Runner.MILE_TWO], times[Runner.MILE_ONE]));
-		setTime(Runner.SPLIT_THREE, Time.difference(times[Runner.FINAL], times[Runner.MILE_TWO]));
+		setTime(Runner.SPLIT_TWO, Time.difference(getTime(Runner.MILE_TWO), getTime(Runner.MILE_ONE)));
+		setTime(Runner.SPLIT_THREE, Time.difference(getTime(Runner.FINAL), getTime(Runner.MILE_TWO)));
 	}
 }
 
