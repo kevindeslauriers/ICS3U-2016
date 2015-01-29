@@ -75,16 +75,20 @@ public class Runner {
 		r.setName(name);
 		
 		System.out.print("Please enter mile one time (mm:ss.sss): ");
-		Time t = new Time(s.nextLine());
-		r.setTime(Runner.MILE_ONE, t);
+	//	Time t = new Time(s.nextLine());
+		this.times[Runner.MILE_ONE] = new Time(s.nextLine());
+		
+		//r.setTime(Runner.MILE_ONE, t);
 		
 		System.out.print("Please enter mile two time (mm:ss.sss): ");
-		t = new Time(s.nextLine());
-		r.setTime(Runner.MILE_TWO, t);
+	//	t = new Time(s.nextLine());
+		this.times[Runner.MILE_TWO] = new Time(s.nextLine());
+	//	r.setTime(Runner.MILE_TWO, t);
 		
 		System.out.print("Please enter final time (mm:ss.sss): ");
-		t = new Time(s.nextLine());
-		r.setTime(Runner.FINAL, t);
+		//t = new Time(s.nextLine());
+		this.times[Runner.FINAL] = new Time(s.nextLine());
+		//r.setTime(Runner.FINAL, t);
 		r.processSplits();
 		return r;
 	}
