@@ -39,8 +39,7 @@ package com.bayviewglen.dayfour;
  * @version
  *   March 5, 2002
  ******************************************************************************/
-public class DoubleArraySequence implements Cloneable
-{
+public class DoubleArraySequence implements Cloneable{
 	private static final int DEFAULT_CAPACITY = 10;
 	// Invariant of the DoubleArraySequence class:
 	//   1. The number of elements in the seqeunces is in the instance variable 
@@ -67,8 +66,7 @@ public class DoubleArraySequence implements Cloneable
 	 *   new double[10].
 	 **/ 
 	//Created  DoubleArraySequence
-	public DoubleArraySequence( )
-	{
+	public DoubleArraySequence( ){
 		data = new double[DEFAULT_CAPACITY];
 		manyItems = 0;
 		currentIndex=0;
@@ -91,16 +89,13 @@ public class DoubleArraySequence implements Cloneable
 	 *   new double[initialCapacity].
 	 **/ 
 	//Get empty sequence with a specified Capacity
-	public DoubleArraySequence(int initialCapacity)
-	{
+	public DoubleArraySequence(int initialCapacity){
 		if (initialCapacity <0)
 			throw new IllegalArgumentException("Capacity cannot be negative");
-		
 		
 		data = new double[initialCapacity];
 		manyItems = 0;
 		currentIndex=0;
-
 	}
 
 
@@ -123,12 +118,9 @@ public class DoubleArraySequence implements Cloneable
 	 *   Integer.MAX_VALUE will cause the sequence to fail with an
 	 *   arithmetic overflow.
 	 **/
-	public void addAfter(double d)
-	{
+	public void addAfter(double d){
 		
 	}
-
-
 
 	/**
 	 * Add a new element to this sequence, before the current element. 
@@ -149,13 +141,10 @@ public class DoubleArraySequence implements Cloneable
 	 *   Integer.MAX_VALUE will cause the sequence to fail with an
 	 *   arithmetic overflow.
 	 **/
-	public void addBefore(double element)
-	{
-		
+	public void addBefore(double element){
 		
 		
 	}
-
 
 	/**
 	 * Place the contents of another sequence at the end of this sequence.
@@ -176,8 +165,7 @@ public class DoubleArraySequence implements Cloneable
 	 *   Integer.MAX_VALUE will cause an arithmetic overflow
 	 *   that will cause the sequence to fail.
 	 **/
-	public void addAll(DoubleArraySequence addend)
-	{
+	public void addAll(DoubleArraySequence addend){
 		
 
 	}   
@@ -198,8 +186,7 @@ public class DoubleArraySequence implements Cloneable
 	 *   Indicates that there is no current element, so 
 	 *   advance may not be called.
 	 **/
-	public void advance( )
-	{
+	public void advance( ){
 		
 	}
 
@@ -213,8 +200,7 @@ public class DoubleArraySequence implements Cloneable
 	 * @exception OutOfMemoryError
 	 *   Indicates insufficient memory for creating the clone.
 	 **/ 
-	public Object clone()
-	{  // Clone a DoubleArraySequence object.
+	public Object clone(){  // Clone a DoubleArraySequence object.
 		DoubleArraySequence answer;
 
 		try
@@ -256,8 +242,7 @@ public class DoubleArraySequence implements Cloneable
 	 *   Integer.MAX_VALUE will cause an arithmetic overflow
 	 *   that will cause the sequence to fail.
 	 **/   
-	public static DoubleArraySequence catenation(DoubleArraySequence s1, DoubleArraySequence s2)
-	{
+	public static DoubleArraySequence catenation(DoubleArraySequence s1, DoubleArraySequence s2){
 		return null;
 
 	}
@@ -274,8 +259,7 @@ public class DoubleArraySequence implements Cloneable
 	 * @exception OutOfMemoryError
 	 *   Indicates insufficient memory for: new int[minimumCapacity].
 	 **/
-	public void ensureCapacity(int minimumCapacity)
-	{
+	public void ensureCapacity(int minimumCapacity){
 		
 	}
 
@@ -288,8 +272,7 @@ public class DoubleArraySequence implements Cloneable
 	 * @return
 	 *   the current capacity of this sequence
 	 **/
-	public int getCapacity( )
-	{
+	public int getCapacity( ){
 		return -1;
 	}
 
@@ -305,8 +288,7 @@ public class DoubleArraySequence implements Cloneable
 	 *   Indicates that there is no current element, so 
 	 *   getCurrent may not be called.
 	 **/
-	public double getCurrent( )
-	{
+	public double getCurrent( ){
 		return 0;
 	}
 
@@ -318,8 +300,8 @@ public class DoubleArraySequence implements Cloneable
 	 * @return
 	 *   true (there is a current element) or false (there is no current element at the moment)
 	 **/
-	public boolean isCurrent( ) //see if sequence has a specified current element
-	{
+	public boolean isCurrent( ){ //see if sequence has a specified current element
+	
 		return true;
 	}
 
@@ -350,8 +332,8 @@ public class DoubleArraySequence implements Cloneable
 	 * @return
 	 *   the number of elements in this sequence
 	 **/ 
-	public int size( ) //Determine the number of elements in this sequence.
-	{
+	public int size( ){ //Determine the number of elements in this sequence.
+	
 		return -1;
 	}
 
@@ -364,8 +346,7 @@ public class DoubleArraySequence implements Cloneable
 	 *   if this sequence has no elements at all, then there is no current 
 	 *   element).
 	 **/ 
-	public void start( )
-	{
+	public void start( ){
 		
 	}
 
@@ -379,18 +360,15 @@ public class DoubleArraySequence implements Cloneable
 	 * @exception OutOfMemoryError
 	 *   Indicates insufficient memory for altering the capacity. 
 	 **/
-	public void trimToSize( )
-	{
+	public void trimToSize( ){
 		
 	}
 
-	public int getCurrentIndex()
-	{
+	public int getCurrentIndex(){
 		return currentIndex;
 	}
 	
-	public void setCurrentIndex(int currentIndex)
-	{
+	public void setCurrentIndex(int currentIndex){
 		this.currentIndex = currentIndex;
 	}
 	
