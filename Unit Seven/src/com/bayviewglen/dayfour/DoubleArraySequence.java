@@ -203,12 +203,10 @@ public class DoubleArraySequence implements Cloneable{
 	public Object clone(){  // Clone a DoubleArraySequence object.
 		DoubleArraySequence answer;
 
-		try
-		{
+		try{
 			answer = (DoubleArraySequence) super.clone( );
 		}
-		catch (CloneNotSupportedException e)
-		{  // This exception should not occur. But if it does, it would probably
+		catch (CloneNotSupportedException e){  // This exception should not occur. But if it does, it would probably
 			// indicate a programming error that made super.clone unavailable.
 			// The most common error would be forgetting the "Implements Cloneable"
 			// clause at the start of this class.
@@ -319,8 +317,7 @@ public class DoubleArraySequence implements Cloneable{
 	 *   Indicates that there is no current element, so 
 	 *   removeCurrent may not be called. 
 	 **/
-	public void removeCurrent( )
-	{
+	public void removeCurrent( ){
 		
 
 	}
