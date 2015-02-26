@@ -1,5 +1,7 @@
 package com.bayviewglen.datastructures;
 
+import java.io.File;
+
 import com.bayviewglen.utils.In;
 import com.bayviewglen.utils.StdOut;
 
@@ -202,7 +204,7 @@ public class Graph {
      * Unit tests the <tt>Graph</tt> data type.
      */
     public static void main(String[] args) {
-        In in = new In(args[0]);
+        In in = new In(new File("testdata/tinyGraph.dat"));
         Graph G = new Graph(in);
         StdOut.println(G);
     }
