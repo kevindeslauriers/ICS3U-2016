@@ -14,7 +14,7 @@ public class TestBagImplementation {
             bag.add(item);
         }
 
-        StdOut.println("size of bag = " + bag.size());
+        StdOut.println("Size of bag = " + bag.size());
         for (String s : bag) {
             StdOut.println(s);
         }

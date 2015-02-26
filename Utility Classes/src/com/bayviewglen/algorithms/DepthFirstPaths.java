@@ -109,7 +109,7 @@ public class DepthFirstPaths {
      * Unit tests the <tt>DepthFirstPaths</tt> data type.
      */
     public static void main(String[] args) {
-        In in = new In(new File("testdata/depthFirstSearchTest1.dat"));
+        In in = new In(new File("testdata/mediumGraph.dat"));
         Graph G = new Graph(in);
         int s = 0;
         DepthFirstPaths dfs = new DepthFirstPaths(G, s);

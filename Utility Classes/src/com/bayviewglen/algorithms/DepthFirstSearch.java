@@ -90,9 +90,9 @@ public class DepthFirstSearch {
      * Unit tests the <tt>DepthFirstSearch</tt> data type.
      */
     public static void main(String[] args) {
-        In in = new In(new File("testdata/depthFirstSearchTest1.dat"));
+        In in = new In(new File("testdata/tinyGraph.dat"));
         Graph G = new Graph(in);
-        int s = 0;
+        int s = 9;
         DepthFirstSearch search = new DepthFirstSearch(G, s);
         for (int v = 0; v < G.V(); v++) {
             if (search.marked(v))

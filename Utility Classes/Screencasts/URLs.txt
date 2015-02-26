@@ -1,0 +1,21 @@
+Introduction to Graphs - Important data structure and is used in so many different algorithms.
+https://www.youtube.com/watch?v=bH0g4syO9e8
+
+Graph API - The Data Structure that we will use to create Graphs. It stores a Bag of adjacent vertices for each vertex.
+http://lingualeo.com/pt/jungle/algorithms-part-ii-graph-api-1-2-234800#/page/1
+
+.
+Depth First Search Algorithm - Great to see if you can get to a vertex from another Vertex. The graph must be undirected.
+https://www.youtube.com/watch?v=8lcMW07KDag
+
+Connected Components API - Checks quickly if there is a way to get from one vertex to another vertex in a undirected graph. Checks if two vertex are in the same connected component.
+https://www.youtube.com/watch?v=cyvC3DsZK8c
+
+Breadth First Path Algorithm - Used for undirected graphs to find the shortest path from one vertex to another vertex.
+https://www.youtube.com/watch?v=OmanQZGLJFM
+
+PriorityQueue - These give us a quick way to obtain the max or min value. Since it stores these in A[1]. Max PQ stores the max at A[1] and a Min PQ stores the min at A[1]
+https://www.youtube.com/watch?v=QJ_7S1p0Kj8
+
+BinaryHeap - We have two Binary Heap implementations that both implement the Priority Queue.  There is a max and a min version. 
+https://www.youtube.com/watch?v=U_TfcSpQmNc

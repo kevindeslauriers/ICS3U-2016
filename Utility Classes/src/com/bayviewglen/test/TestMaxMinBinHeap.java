@@ -20,7 +20,6 @@ public class TestMaxMinBinHeap {
 		
 		System.out.println(maxLine.toString());
 		System.out.println(minLine.toString());
-
 	}
 
 }

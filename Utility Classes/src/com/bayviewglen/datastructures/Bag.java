@@ -28,8 +28,13 @@ package com.bayviewglen.datastructures;
  *
  *************************************************************************/
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import com.bayviewglen.utils.In;
+import com.bayviewglen.utils.StdIn;
+import com.bayviewglen.utils.StdOut;
 
 /**
  *  The <tt>Bag</tt> class represents a bag (or multiset) of 
@@ -122,7 +127,19 @@ public class Bag<Item> implements Iterable<Item> {
         }
     }
 
+    public static void main(String[] args) {
+    	In in = new In(new File("testdata/bagData.dat"));
+    	Bag<String> bag = new Bag<String>();
+        while (!in.isEmpty()) {
+            String item = in.readString();
+            bag.add(item);
+        }
 
+        StdOut.println("Size of bag = " + bag.size());
+        for (String s : bag) {
+            StdOut.println(s);
+        }
+    }
 
 
 }
