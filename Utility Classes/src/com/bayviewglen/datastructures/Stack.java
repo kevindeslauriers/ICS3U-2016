@@ -19,9 +19,11 @@ package com.bayviewglen.datastructures;
  *
  *************************************************************************/
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import com.bayviewglen.utils.In;
 import com.bayviewglen.utils.StdIn;
 import com.bayviewglen.utils.StdOut;
 
@@ -158,8 +160,9 @@ public class Stack<Item> implements Iterable<Item> {
      */
     public static void main(String[] args) {
         Stack<String> s = new Stack<String>();
-        while (!StdIn.isEmpty()) {
-            String item = StdIn.readString();
+        In in = new In(new File("testdata/stack.dat"));
+        while (!in.isEmpty()) {
+            String item = in.readString();
             if (!item.equals("-")) s.push(item);
             else if (!s.isEmpty()) StdOut.print(s.pop() + " ");
         }
