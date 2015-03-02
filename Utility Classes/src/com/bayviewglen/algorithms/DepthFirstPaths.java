@@ -109,9 +109,23 @@ public class DepthFirstPaths {
      * Unit tests the <tt>DepthFirstPaths</tt> data type.
      */
     public static void main(String[] args) {
-        In in = new In(new File("testdata/mediumGraph.dat"));
+       
+    	//Test #1
+    	//test1();
+    	
+    	// Test #2
+    //	test2();
+    	
+    	// Test #3 - try out the nen Grid Constructotr - since a grid is a great type of application 
+    	test3();	// to use a graph. - the dfs crashes quickly with a stack overflow when we have
+    				// even a small grid (ie 100x100) and there are no obsticles 
+    				// 75 x 75 does work and works quickly.
+    }
+
+    private static void test1(){
+    	In in = new In(new File("testdata/tinyGraph.dat"));
         Graph G = new Graph(in);
-        int s = 0;
+        int s = 9;
         DepthFirstPaths dfs = new DepthFirstPaths(G, s);
 
         for (int v = 0; v < G.V(); v++) {
@@ -129,6 +143,34 @@ public class DepthFirstPaths {
             }
 
         }
+        in.close();
     }
-
+    
+    private static void test2(){
+    	In in = new In(new File("testdata/tinyGraph.dat"));
+        Graph G = new Graph(in);
+        int s = 2;
+        DepthFirstPaths dfs1 = new DepthFirstPaths(G, s);
+        if (dfs1.hasPathTo(5)) {
+	        for (int x : dfs1.pathTo(5)) {
+	            if (x == s) StdOut.print(x);
+	            else        StdOut.print("-" + x);
+	        }
+        }
+        in.close();
+    }
+    
+    private static void test3(){
+    	Graph G = new Graph(75,75, true);	// graph where you can only go up and down and left and right.
+    	// top left corner is vertex 0.
+    	int s = 0;
+    	 DepthFirstPaths dfs1 = new DepthFirstPaths(G, s);
+         if (dfs1.hasPathTo(21)) {
+ 	        for (int x : dfs1.pathTo(21)) {
+ 	            if (x == s) StdOut.print(x);
+ 	            else        StdOut.print("-" + x);
+ 	        }
+         }
+    }
+    
 }

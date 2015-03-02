@@ -1,6 +1,7 @@
 package com.bayviewglen.datastructures;
 
 import java.io.File;
+import java.util.Iterator;
 
 import com.bayviewglen.utils.In;
 import com.bayviewglen.utils.StdOut;
@@ -79,6 +80,52 @@ public class Graph {
             adj[v] = new Bag<Integer>();
         }
     }
+    
+    public Graph(int rows, int cols, boolean allowDiagonals) {
+        
+    	if (rows < 0 || cols < 0) throw new IllegalArgumentException("Rows and Cols of grid must be nonnegative");
+    	
+        this.V = rows*cols;
+        this.E = 0;
+        adj = (Bag<Integer>[]) new Bag[V];
+        for (int v = 0; v < V; v++) {
+            adj[v] = new Bag<Integer>();
+        }
+        
+        // now we need to add the edges
+        // if allowDiagonals is false || true then we can only go up down left and right.
+        for (int i=0;i<rows*cols; i++){
+	        if ((i+1)%cols != 0)
+	        	addEdge(i,i+1);	// adds an edge to the right and vice versa
+	        
+	        if (i%cols != 0)
+	        	addEdge(i,i-1);	// adds an edge to the left and vice versa
+	        
+	        if (i<rows*cols-cols)
+	        	addEdge(i,i+cols);
+	        
+	        if (i>cols)
+	        	addEdge(i,i-cols);
+        }
+        
+        
+        
+        // if allowDiagonals is true then we can also go in the four diagonals.
+        if (allowDiagonals){
+        	for (int i=0;i<rows-1;i++){		// bottom right
+        		for (int j=0;j<cols-1;j++){
+        			addEdge(i,i+rows+1);
+        		}
+        	}
+        	
+        	for (int i=1;i<rows;i++){		// bottom left
+        		for (int j=0;j<cols-1;j++){
+        			addEdge(i,i+rows-1);
+        		}
+        	}
+        }
+        
+    }
 
     /**  
      * Initializes a graph from an input stream.
@@ -150,6 +197,13 @@ public class Graph {
     public void addEdge(int v, int w) {
         validateVertex(v);
         validateVertex(w);
+        
+        Iterator<Integer> it = adj[v].iterator();
+        while (it.hasNext()){
+        	if (it.next() == w)
+        		return;
+        }
+        
         E++;
         adj[v].add(w);
         adj[w].add(v);
@@ -178,6 +232,7 @@ public class Graph {
         return adj[v].size();
     }
 
+    
 
     /**
      * Returns a string representation of the graph.
