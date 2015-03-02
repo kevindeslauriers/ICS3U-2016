@@ -226,7 +226,7 @@ public class BreadthFirstPaths {
      */
     public static void main(String[] args) {
         // test1();
-    	test2(802);
+    	test2(802);		// checks for a path from 0 -> vertex 802 in a grid that is 2000x2000 where you can traverse in any direction
     }
     
     private static void test1(){
