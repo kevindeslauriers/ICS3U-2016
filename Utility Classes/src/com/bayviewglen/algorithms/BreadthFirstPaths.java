@@ -225,8 +225,12 @@ public class BreadthFirstPaths {
      * Unit tests the <tt>BreadthFirstPaths</tt> data type.
      */
     public static void main(String[] args) {
-        In in = new In(new File("testdata/tinyGraph.dat"));
-       // In in = new In(new File("testdata/largeGraph.dat"));
+        // test1();
+    	test2(802);
+    }
+    
+    private static void test1(){
+    	In in = new In(new File("testdata/largeGraph.dat"));
         Graph G = new Graph(in);
 
         int s = 0;
@@ -246,6 +250,26 @@ public class BreadthFirstPaths {
                 StdOut.printf("%d to %d (-):  not connected\n", s, v);
             }
 
+        }
+        in.close();
+    }
+    
+    private static void test2(int v){
+    	Graph G = new Graph(2000,2000, true);	// graph where you can only go up and down and left and right.
+    	// top left corner is vertex 0.
+    	int s = 0;
+    	BreadthFirstPaths bfs = new BreadthFirstPaths(G, s);
+    	if (bfs.hasPathTo(v)) {
+            StdOut.printf("%d to %d (%d):  ", s, v, bfs.distTo(v));
+            for (int x : bfs.pathTo(v)) {
+                if (x == s) StdOut.print(x);
+                else        StdOut.print("-" + x);
+            }
+            StdOut.println();
+        }
+
+        else {
+            StdOut.printf("%d to %d (-):  not connected\n", s, v);
         }
     }
 
