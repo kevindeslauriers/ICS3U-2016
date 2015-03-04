@@ -125,21 +125,21 @@ public class DepthFirstPaths {
     private static void test1(){
     	In in = new In(new File("testdata/tinyGraph.dat"));
         Graph G = new Graph(in);
-        int s = 9;
-        DepthFirstPaths dfs = new DepthFirstPaths(G, s);
+        int start = 0;
+        DepthFirstPaths dfs = new DepthFirstPaths(G, start);
 
         for (int v = 0; v < G.V(); v++) {
             if (dfs.hasPathTo(v)) {
-                StdOut.printf("%d to %d:  ", s, v);
+                StdOut.printf("%d to %d:  ", start, v);
                 for (int x : dfs.pathTo(v)) {
-                    if (x == s) StdOut.print(x);
+                    if (x == start) StdOut.print(x);
                     else        StdOut.print("-" + x);
                 }
                 StdOut.println();
             }
 
             else {
-                StdOut.printf("%d to %d:  not connected\n", s, v);
+                StdOut.printf("%d to %d:  not connected\n", start, v);
             }
 
         }
@@ -161,7 +161,7 @@ public class DepthFirstPaths {
     }
     
     private static void test3(){
-    	Graph G = new Graph(75,75, true);	// graph where you can only go up and down and left and right.
+    	Graph G = new Graph(100,100, true);	// graph where you can only go up and down and left and right.
     	// top left corner is vertex 0.
     	int s = 0;
     	 DepthFirstPaths dfs1 = new DepthFirstPaths(G, s);

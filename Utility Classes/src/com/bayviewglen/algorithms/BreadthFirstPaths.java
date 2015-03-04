@@ -1,12 +1,16 @@
 package com.bayviewglen.algorithms;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Set;
 
+import com.bayviewglen.datastructures.Cell;
 import com.bayviewglen.datastructures.Graph;
 import com.bayviewglen.datastructures.Queue;
 import com.bayviewglen.datastructures.Stack;
 import com.bayviewglen.utils.In;
 import com.bayviewglen.utils.StdOut;
+import com.bayviewglen.utils.Utils;
 
 /*************************************************************************
  *  Compilation:  javac BreadthFirstPaths.java
@@ -225,12 +229,12 @@ public class BreadthFirstPaths {
      * Unit tests the <tt>BreadthFirstPaths</tt> data type.
      */
     public static void main(String[] args) {
-        // test1();
-    	test2(802);		// checks for a path from 0 -> vertex 802 in a grid that is 2000x2000 where you can traverse in any direction
+        //test1();
+    	test2();		// checks for a path from 0 -> vertex 802 in a grid that is 2000x2000 where you can traverse in any direction
     }
     
     private static void test1(){
-    	In in = new In(new File("testdata/largeGraph.dat"));
+    	In in = new In(new File("testdata/tinyGraph.dat"));
         Graph G = new Graph(in);
 
         int s = 0;
@@ -254,22 +258,33 @@ public class BreadthFirstPaths {
         in.close();
     }
     
-    private static void test2(int v){
-    	Graph G = new Graph(2000,2000, true);	// graph where you can only go up and down and left and right.
+    private static void test2(){
+    	Graph G = new Graph(5,5, true);	// graph where you can only go up and down and left and right.
     	// top left corner is vertex 0.
-    	int s = 0;
-    	BreadthFirstPaths bfs = new BreadthFirstPaths(G, s);
+    	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(5,5);
+    	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(5,5);
+    	
+    	Cell startingCell = new Cell(4,4);
+    	int start = cellVertexMap.get(startingCell);
+    	
+    	
+    	BreadthFirstPaths bfs = new BreadthFirstPaths(G, start);
+    	
+    	
+    	
+    	Cell finish = new Cell(2,2);
+    	Integer v = cellVertexMap.get(finish);
     	if (bfs.hasPathTo(v)) {
-            StdOut.printf("%d to %d (%d):  ", s, v, bfs.distTo(v));
+            StdOut.printf("The path from %s to %s has length (%d):  ", startingCell.toString(), finish.toString(), bfs.distTo(v));
             for (int x : bfs.pathTo(v)) {
-                if (x == s) StdOut.print(x);
-                else        StdOut.print("-" + x);
+                if (x == start) StdOut.print(vertexCellMap.get(x));
+                else        StdOut.print(" -> " + vertexCellMap.get(x));
             }
             StdOut.println();
         }
 
         else {
-            StdOut.printf("%d to %d (-):  not connected\n", s, v);
+            StdOut.printf("%d to %d (-):  not connected\n", start, v);
         }
     }
 

@@ -92,7 +92,7 @@ public class DepthFirstSearch {
     public static void main(String[] args) {
         In in = new In(new File("testdata/tinyGraph.dat"));
         Graph G = new Graph(in);
-        int s = 9;
+        int s = 0;
         DepthFirstSearch search = new DepthFirstSearch(G, s);
         for (int v = 0; v < G.V(); v++) {
             if (search.marked(v))
