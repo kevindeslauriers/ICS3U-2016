@@ -230,7 +230,7 @@ public class BreadthFirstPaths {
      */
     public static void main(String[] args) {
         //test1();
-    	test2();		// checks for a path from 0 -> vertex 802 in a grid that is 2000x2000 where you can traverse in any direction
+    	test2();		
     }
     
     private static void test1(){
@@ -259,12 +259,12 @@ public class BreadthFirstPaths {
     }
     
     private static void test2(){
-    	Graph G = new Graph(5,5, true);	// graph where you can only go up and down and left and right.
+    	Graph G = new Graph(20,20, false);	// graph where you can only go up and down and left and right.
     	// top left corner is vertex 0.
-    	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(5,5);
-    	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(5,5);
+    	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(20,20);
+    	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(20,20);
     	
-    	Cell startingCell = new Cell(4,4);
+    	Cell startingCell = new Cell(10,10);
     	int start = cellVertexMap.get(startingCell);
     	
     	
@@ -272,7 +272,7 @@ public class BreadthFirstPaths {
     	
     	
     	
-    	Cell finish = new Cell(2,2);
+    	Cell finish = new Cell(18,18);
     	Integer v = cellVertexMap.get(finish);
     	if (bfs.hasPathTo(v)) {
             StdOut.printf("The path from %s to %s has length (%d):  ", startingCell.toString(), finish.toString(), bfs.distTo(v));
