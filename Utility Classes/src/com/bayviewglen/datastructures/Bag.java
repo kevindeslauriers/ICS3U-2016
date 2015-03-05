@@ -99,7 +99,23 @@ public class Bag<Item> implements Iterable<Item> {
         N++;
     }
 
-
+    public void remove(Item w) {
+		if (first.item == w) {
+			first = first.next;
+		} else {
+		    Node<Item> temp = first;
+		    while (temp.next != null) {
+		        if (temp.next.item.equals(w)) {
+		            temp.next = temp.next.next;
+		            break;
+		        } else {
+		            temp = temp.next;
+		        }
+		    }
+		}
+		
+	}
+    
     /**
      * Returns an iterator that iterates over the items in the bag in arbitrary order.
      * @return an iterator that iterates over the items in the bag in arbitrary order
@@ -140,6 +156,8 @@ public class Bag<Item> implements Iterable<Item> {
             StdOut.println(s);
         }
     }
+
+	
 
 
 }

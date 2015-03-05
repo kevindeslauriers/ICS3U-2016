@@ -108,8 +108,6 @@ public class Graph {
 	        	addEdge(i,i-cols);
         }
         
-        
-        
         // if allowDiagonals is true then we can also go in the four diagonals.
         if (allowDiagonals){
         	for (int i=0;i<rows-1;i++){		// bottom right
@@ -208,6 +206,37 @@ public class Graph {
         adj[v].add(w);
         adj[w].add(v);
     }
+    
+    /**
+     * Removes a vertex from the graph.
+     * @param v one vertex in the edge
+     * @throws java.lang.IndexOutOfBoundsException unless both 0 <= v < V and 0 <= w < V
+     */
+    public void disconnectVertex(int v){
+    	validateVertex(v);
+    	
+    	
+    	// go through the vertex - and remove all of the edges edges connecting it to some other vertex.
+    	Bag<Integer> edges = adj[v];
+    	
+    	for (Integer w : edges){
+    		removeEdge(v,w);
+    	}
+    }
+    /**
+     * Removes the undirected edge v-w from the graph.
+     * @param v one vertex in the edge
+     * @param w the other vertex in the edge
+     * @throws java.lang.IndexOutOfBoundsException unless both 0 <= v < V and 0 <= w < V
+     */
+    public void removeEdge(int v, int w){
+    	validateVertex(v);
+        validateVertex(w);
+        
+        E--;
+        adj[v].remove(w);
+        adj[w].remove(v);
+    }
 
 
     /**
@@ -261,6 +290,8 @@ public class Graph {
     public static void main(String[] args) {
         In in = new In(new File("testdata/tinyGraph.dat"));
         Graph G = new Graph(in);
+        
+        G.disconnectVertex(5);
         StdOut.println(G);
     }
 
