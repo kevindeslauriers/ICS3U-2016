@@ -61,23 +61,17 @@ import com.bayviewglen.utils.StdOut;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class Graph {
+public class DirectedGraph extends Graph{
     private final int V;
     private int E;
     private Bag<Integer>[] adj;
-    
-    
-    public Graph(){
-    	this.V = 0;
-        this.E = 0;
-    }
     
     /**
      * Initializes an empty graph with <tt>V</tt> vertices and 0 edges.
      * param V the number of vertices
      * @throws java.lang.IllegalArgumentException if <tt>V</tt> < 0
      */
-    public Graph(int V) {
+    public DirectedGraph(int V) {
         if (V < 0) throw new IllegalArgumentException("Number of vertices must be nonnegative");
         this.V = V;
         this.E = 0;
@@ -87,7 +81,7 @@ public class Graph {
         }
     }
     
-    public Graph(int rows, int cols, boolean allowDiagonals) {
+    public DirectedGraph(int rows, int cols, boolean allowDiagonals) {
         
     	if (rows < 0 || cols < 0) throw new IllegalArgumentException("Rows and Cols of grid must be nonnegative");
     	
@@ -140,7 +134,7 @@ public class Graph {
      * @throws java.lang.IndexOutOfBoundsException if the endpoints of any edge are not in prescribed range
      * @throws java.lang.IllegalArgumentException if the number of vertices or edges is negative
      */
-    public Graph(In in) {
+    public DirectedGraph(In in) {
         this(in.readInt());
         int E = in.readInt();
         if (E < 0) throw new IllegalArgumentException("Number of edges must be nonnegative");
@@ -155,7 +149,7 @@ public class Graph {
      * Initializes a new graph that is a deep copy of <tt>G</tt>.
      * @param G the graph to copy
      */
-    public Graph(Graph G) {
+    public DirectedGraph(DirectedGraph G) {
         this(G.V());
         this.E = G.E();
         for (int v = 0; v < G.V(); v++) {
@@ -210,7 +204,7 @@ public class Graph {
         
         E++;
         adj[v].add(w);
-        adj[w].add(v);
+       
     }
     
     /**
@@ -241,7 +235,6 @@ public class Graph {
         
         E--;
         adj[v].remove(w);
-        adj[w].remove(v);
     }
 
 
