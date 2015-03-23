@@ -1,11 +1,15 @@
 package com.bayviewglen.algorithms;
 
 import java.io.File;
+import java.util.HashMap;
 
+import com.bayviewglen.datastructures.Cell;
+import com.bayviewglen.datastructures.DirectedGraph;
 import com.bayviewglen.datastructures.Graph;
 import com.bayviewglen.datastructures.Stack;
 import com.bayviewglen.utils.In;
 import com.bayviewglen.utils.StdOut;
+import com.bayviewglen.utils.Utils;
 
 
 /*************************************************************************
@@ -161,14 +165,22 @@ public class DepthFirstPaths {
     }
     
     private static void test3(){
-    	Graph G = new Graph(100,100, true);	// graph where you can only go up and down and left and right.
+    	DirectedGraph G = new DirectedGraph(100,100, true);	// graph where you can only go up and down and left and right.
+    	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(100,100);
+    	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(100,100);
+    	
     	// top left corner is vertex 0.
-    	int s = 0;
-    	 DepthFirstPaths dfs1 = new DepthFirstPaths(G, s);
-         if (dfs1.hasPathTo(21)) {
- 	        for (int x : dfs1.pathTo(21)) {
- 	            if (x == s) StdOut.print(x);
- 	            else        StdOut.print("-" + x);
+    	Cell startingCell = new Cell(10,10);
+    	int start = cellVertexMap.get(startingCell);
+    	
+    	DepthFirstPaths dfs1 = new DepthFirstPaths(G, start);
+    	
+    	Cell finish = new Cell(18,18);
+     	Integer v = cellVertexMap.get(finish);
+         if (dfs1.hasPathTo(v)) {
+ 	        for (int x : dfs1.pathTo(v)) {
+ 	            if (x == start) StdOut.print(vertexCellMap.get(x));
+ 	            else        StdOut.print("->" + vertexCellMap.get(x));
  	        }
          }
     }

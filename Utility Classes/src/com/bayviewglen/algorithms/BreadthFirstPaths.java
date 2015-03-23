@@ -259,7 +259,7 @@ public class BreadthFirstPaths {
     }
     
     private static void test2(){
-    	Graph G = new Graph(20,20, false);	// graph where you can only go up and down and left and right.
+    	Graph G = new Graph(20,20, true);	// graph where you can only go up and down and left and right.
     	// top left corner is vertex 0.
     	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(20,20);
     	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(20,20);
@@ -287,6 +287,4 @@ public class BreadthFirstPaths {
             StdOut.printf("%d to %d (-):  not connected\n", start, v);
         }
     }
-
-
 }

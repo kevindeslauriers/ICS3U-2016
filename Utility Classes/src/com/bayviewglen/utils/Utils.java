@@ -9,6 +9,7 @@ public class Utils {
 		return s == null || s.trim().equals("");
 	}
 	
+	/* Give me a cell and I will give you a vertex # */
 	public static HashMap<Cell,Integer> createGridHashMap(int rows, int cols){
 		HashMap<Cell,Integer> temp = new HashMap<Cell,Integer>();
 		
@@ -22,6 +23,7 @@ public class Utils {
 		
 	}
 	
+	/* Give me a vertex and I will give you a Cell */
 	public static HashMap<Integer,Cell> createVertexHashMap(int rows, int cols){
 		HashMap<Integer,Cell> temp = new HashMap<Integer,Cell>();
 		
