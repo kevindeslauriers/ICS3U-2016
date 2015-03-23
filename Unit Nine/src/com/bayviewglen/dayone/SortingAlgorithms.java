@@ -21,14 +21,14 @@ public class SortingAlgorithms {
 	}
 
 	private static void insertionSort(int[] numbers) {
-		for (int i=1;i<numbers.length; ++i){
+		for (int i=1;i<numbers.length; ++i){	// tracks the sorted/unsorted side
 			int nextNumber = numbers[i];
 			int j;
-			for (j=i-1; j>=0; j--){
-				if (numbers[j] > nextNumber)
+			for (j=i-1; j>=0; j--){	// does the shifting
+				if (numbers[j] > nextNumber)	// keep shifting if we are smaller than current element in the sorted side
 					numbers[j+1] = numbers[j];
 				else
-					break;
+					break;	// we don't need to shift anymore
 				
 			}
 			numbers[j+1] = nextNumber;
@@ -36,7 +36,7 @@ public class SortingAlgorithms {
 	}
 
 	private static void selectionSort(int[] numbers) {
-		for (int i=0;i<numbers.length; ++i){
+		for (int i=0;i<numbers.length; ++i){	// moves the dashed line
 			int smallestIndex = i;
 			for (int j=i+1; j<numbers.length;++j){
 				if (numbers[j] < numbers[smallestIndex])
