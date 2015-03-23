@@ -1,5 +1,7 @@
 package com.bayviewglen.algorithms;
 
+import java.io.File;
+
 import com.bayviewglen.datastructures.DirectedEdge;
 import com.bayviewglen.datastructures.EdgeWeightedDigraph;
 import com.bayviewglen.datastructures.IndexMinPQ;
@@ -198,9 +200,9 @@ public class DijkstraSP {
      * Unit tests the <tt>DijkstraSP</tt> data type.
      */
     public static void main(String[] args) {
-        In in = new In(args[0]);
+        In in = new In(new File("testdata/mediumEWD.dat"));
         EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
-        int s = Integer.parseInt(args[1]);
+        int s = 0;
 
         // compute shortest paths
         DijkstraSP sp = new DijkstraSP(G, s);
