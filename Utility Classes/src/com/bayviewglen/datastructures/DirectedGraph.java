@@ -132,40 +132,40 @@ public DirectedGraph(int rows, int cols, boolean allowAdjacent, boolean allowDia
         	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(rows,cols);
         	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(rows,cols);
         	
-        		for (int i=0;i<rows*cols; i++){	// we have row x col vertices
-        			Cell v = vertexCellMap.get(i);
-        			Integer j = cellVertexMap.get(new Cell(v.getCol()+2,v.getRow()+1));
-        			if (j != null)
-        				addEdge(i,j);
-        			
-        			j = cellVertexMap.get(new Cell(v.getCol()+2,v.getRow()-1));
-        			if (j != null)
-        				addEdge(i,j);
-        			
-        			j = cellVertexMap.get(new Cell(v.getCol()-2,v.getRow()+1));
-        			if (j != null)
-        				addEdge(i,j);
-        			
-        			j = cellVertexMap.get(new Cell(v.getCol()-2,v.getRow()-1));
-        			if (j != null)
-        				addEdge(i,j);
-        			
-        			j = cellVertexMap.get(new Cell(v.getCol()+1,v.getRow()+2));
-        			if (j != null)
-        				addEdge(i,j);
-        			
-        			j = cellVertexMap.get(new Cell(v.getCol()+1,v.getRow()-2));
-        			if (j != null)
-        				addEdge(i,j);
-        			
-        			j = cellVertexMap.get(new Cell(v.getCol()-1,v.getRow()+2));
-        			if (j != null)
-        				addEdge(i,j);
-        			
-        			j = cellVertexMap.get(new Cell(v.getCol()-1,v.getRow()-2));
-        			if (j != null)
-        				addEdge(i,j);
-        		}
+        	for (int i=0;i<rows*cols; i++){	// we have row x col vertices
+    			Cell v = vertexCellMap.get(i);
+    			Integer j = cellVertexMap.get(new Cell(v.getRow()+2,v.getCol()+1));
+    			if (j != null)
+    				addEdge(i,j);
+    			
+    			j = cellVertexMap.get(new Cell(v.getRow()+2,v.getCol()-1));
+    			if (j != null)
+    				addEdge(i,j);
+    			
+    			j = cellVertexMap.get(new Cell(v.getRow()-2,v.getCol()+1));
+    			if (j != null)
+    				addEdge(i,j);
+    			
+    			j = cellVertexMap.get(new Cell(v.getRow()-2,v.getCol()-1));
+    			if (j != null)
+    				addEdge(i,j);
+    			
+    			j = cellVertexMap.get(new Cell(v.getRow()+1,v.getCol()+2));
+    			if (j != null)
+    				addEdge(i,j);
+    			
+    			j = cellVertexMap.get(new Cell(v.getRow()+1,v.getCol()-2));
+    			if (j != null)
+    				addEdge(i,j);
+    			
+    			j = cellVertexMap.get(new Cell(v.getRow()-1,v.getCol()+2));
+    			if (j != null)
+    				addEdge(i,j);
+    			
+    			j = cellVertexMap.get(new Cell(v.getRow()-1,v.getCol()-2));
+    			if (j != null)
+    				addEdge(i,j);
+    		}
         	
         }
         

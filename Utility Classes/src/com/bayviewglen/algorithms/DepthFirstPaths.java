@@ -188,7 +188,7 @@ public class DepthFirstPaths {
     }
     
     private static void test4(){
-    	DirectedGraph G = new DirectedGraph(8, 8, false, false, true);	// graph where you can only go up and down and left and right.
+    	Graph G = new Graph(8, 8, false, false, true);	// graph where you can only go up and down and left and right.
     	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(8,8);
     	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(8,8);
     	
