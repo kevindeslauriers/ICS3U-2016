@@ -121,9 +121,11 @@ public class DepthFirstPaths {
     //	test2();
     	
     	// Test #3 - try out the nen Grid Constructotr - since a grid is a great type of application 
-    	test3();	// to use a graph. - the dfs crashes quickly with a stack overflow when we have
+    	//test3();	// to use a graph. - the dfs crashes quickly with a stack overflow when we have
     				// even a small grid (ie 100x100) and there are no obsticles 
     				// 75 x 75 does work and works quickly.
+    	
+    	test4();
     }
 
     private static void test1(){
@@ -165,7 +167,7 @@ public class DepthFirstPaths {
     }
     
     private static void test3(){
-    	DirectedGraph G = new DirectedGraph(100,100, true);	// graph where you can only go up and down and left and right.
+    	DirectedGraph G = new DirectedGraph(100,100, true, true, false);	// graph where you can only go up and down and left and right.
     	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(100,100);
     	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(100,100);
     	
@@ -176,6 +178,27 @@ public class DepthFirstPaths {
     	DepthFirstPaths dfs1 = new DepthFirstPaths(G, start);
     	
     	Cell finish = new Cell(18,18);
+     	Integer v = cellVertexMap.get(finish);
+         if (dfs1.hasPathTo(v)) {
+ 	        for (int x : dfs1.pathTo(v)) {
+ 	            if (x == start) StdOut.print(vertexCellMap.get(x));
+ 	            else        StdOut.print("->" + vertexCellMap.get(x));
+ 	        }
+         }
+    }
+    
+    private static void test4(){
+    	DirectedGraph G = new DirectedGraph(8, 8, false, false, true);	// graph where you can only go up and down and left and right.
+    	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(8,8);
+    	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(8,8);
+    	
+    	// top left corner is vertex 0.
+    	Cell startingCell = new Cell(0,0);
+    	int start = cellVertexMap.get(startingCell);
+    	
+    	DepthFirstPaths dfs1 = new DepthFirstPaths(G, start);
+    	
+    	Cell finish = new Cell(7,7);
      	Integer v = cellVertexMap.get(finish);
          if (dfs1.hasPathTo(v)) {
  	        for (int x : dfs1.pathTo(v)) {

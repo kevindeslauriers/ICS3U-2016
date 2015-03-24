@@ -1,10 +1,12 @@
 package com.bayviewglen.datastructures;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import com.bayviewglen.utils.In;
 import com.bayviewglen.utils.StdOut;
+import com.bayviewglen.utils.Utils;
 
 /*************************************************************************
  *  Compilation:  javac Graph.java        
@@ -81,7 +83,7 @@ public class DirectedGraph extends Graph{
         }
     }
     
-    public DirectedGraph(int rows, int cols, boolean allowDiagonals) {
+public DirectedGraph(int rows, int cols, boolean allowAdjacent, boolean allowDiagonals, boolean allowKnights) {
         
     	if (rows < 0 || cols < 0) throw new IllegalArgumentException("Rows and Cols of grid must be nonnegative");
     	
@@ -94,21 +96,23 @@ public class DirectedGraph extends Graph{
         
         // now we need to add the edges
         // if allowDiagonals is false || true then we can only go up down left and right.
-        for (int i=0;i<rows*cols; i++){
-	        if ((i+1)%cols != 0)
-	        	addEdge(i,i+1);	// adds an edge to the right and vice versa
-	        
-	        if (i%cols != 0)
-	        	addEdge(i,i-1);	// adds an edge to the left and vice versa
-	        
-	        if (i<rows*cols-cols)
-	        	addEdge(i,i+cols);
-	        
-	        if (i>cols)
-	        	addEdge(i,i-cols);
+        if (allowAdjacent){
+	        for (int i=0;i<rows*cols; i++){
+		        if ((i+1)%cols != 0)
+		        	addEdge(i,i+1);	// adds an edge to the right and vice versa
+		        
+		        if (i%cols != 0)
+		        	addEdge(i,i-1);	// adds an edge to the left and vice versa
+		        
+		        if (i<rows*cols-cols)
+		        	addEdge(i,i+cols);
+		        
+		        if (i>cols)
+		        	addEdge(i,i-cols);
+	        }
         }
         
-        // if allowDiagonals is true then we can also go in the four diagonals.
+        // if allowDiagonals is true then we can also go in the four diagonals -> adjacent Diagonals
         if (allowDiagonals){
         	for (int i=0;i<rows-1;i++){		// bottom right
         		for (int j=0;j<cols-1;j++){
@@ -123,8 +127,50 @@ public class DirectedGraph extends Graph{
         	}
         }
         
+        if (allowKnights){
+        	
+        	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(rows,cols);
+        	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(rows,cols);
+        	
+        		for (int i=0;i<rows*cols; i++){	// we have row x col vertices
+        			Cell v = vertexCellMap.get(i);
+        			Integer j = cellVertexMap.get(new Cell(v.getCol()+2,v.getRow()+1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getCol()+2,v.getRow()-1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getCol()-2,v.getRow()+1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getCol()-2,v.getRow()-1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getCol()+1,v.getRow()+2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getCol()+1,v.getRow()-2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getCol()-1,v.getRow()+2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getCol()-1,v.getRow()-2));
+        			if (j != null)
+        				addEdge(i,j);
+        		}
+        	
+        }
+        
     }
-
+    
     /**  
      * Initializes a graph from an input stream.
      * The format is the number of vertices <em>V</em>,
