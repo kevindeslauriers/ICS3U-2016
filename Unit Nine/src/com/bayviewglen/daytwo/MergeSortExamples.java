@@ -14,12 +14,14 @@ public class MergeSortExamples {
 		if (low == high)
 			return;
 		int length = high - low + 1;
-		int pivot = (low + high) / 2;
-		mergesort(a, low, pivot);
-		mergesort(a, pivot + 1, high);
+		int pivot = (low + high) / 2;		// our pivot is the mid point
+		mergesort(a, low, pivot);			// sort the left side
+		mergesort(a, pivot + 1, high);		// sort the right side
+		
 		int working[] = new int[length];
 		for (int i = 0; i < length; i++)
 			working[i] = a[low + i];
+		
 		int m1 = 0;
 		int m2 = pivot - low + 1;
 		for (int i = 0; i < length; i++) {
