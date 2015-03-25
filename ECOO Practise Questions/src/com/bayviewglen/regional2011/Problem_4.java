@@ -17,7 +17,8 @@ import com.bayviewglen.datastructures.Cell;
 public class Problem_4 {
 	public static void main(String[] args) throws FileNotFoundException{
 		Scanner input = new Scanner(new File("input/q4.dat"));
-		HashSet<Cell> marked = new HashSet<Cell>();
+		HashSet<Cell> marked = new HashSet<Cell>();	
+		// we will store the trees that are perimeter trees
 		
 		int numCells = Integer.parseInt(input.nextLine());
 		Cell[] cells = new Cell[numCells];
@@ -30,7 +31,7 @@ public class Problem_4 {
 		
 		for (Cell c1 : cells){
 			for (Cell c2 : cells){
-				if (!c1.equals(c2) && (!marked.contains(c1) || !marked.contains(c1))){
+				if (!c1.equals(c2) && (!marked.contains(c1) || !marked.contains(c1))){	// as long as both are not already perm trees
 					if (isPermTree(c1,c2,cells)){
 						marked.add(c1);
 						marked.add(c2);
