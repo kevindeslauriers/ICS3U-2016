@@ -6,7 +6,14 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 import com.bayviewglen.datastructures.Cell;
-
+/*
+ * Imagine a forest full of trees. Some trees are considered interior trees, and some are trees on the
+ * perimeter. A tree is considered interior, if for every imaginary straight line drawn through the tree, there
+ * will always be some trees on either side of the line. For a tree to be on the perimeter, a line may be
+ * drawn is such a way, that all trees are either on one side of the line or on the line itself. Given the x-y
+ * coordinates of a grove of trees, write a program that will count the number of trees that are on the
+ * perimeter.
+ */
 public class Problem_4 {
 	public static void main(String[] args) throws FileNotFoundException{
 		Scanner input = new Scanner(new File("input/q4.dat"));
