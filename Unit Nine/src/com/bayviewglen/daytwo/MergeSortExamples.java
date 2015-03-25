@@ -8,6 +8,7 @@ public class MergeSortExamples {
 		
 		mergesort(numbers,0,numbers.length-1);
 		display(numbers);
+
 	}
 
 	private static void mergesort(int a[], int low, int high) {

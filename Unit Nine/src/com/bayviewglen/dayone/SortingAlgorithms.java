@@ -36,7 +36,7 @@ public class SortingAlgorithms {
 	}
 
 	private static void selectionSort(int[] numbers) {
-		for (int i=0;i<numbers.length; ++i){	// moves the dashed line
+		for (int i=0;i<numbers.length-1; ++i){	// moves the dashed line - the last time we only have the biggest so one less pass
 			int smallestIndex = i;
 			for (int j=i+1; j<numbers.length;++j){
 				if (numbers[j] < numbers[smallestIndex])
