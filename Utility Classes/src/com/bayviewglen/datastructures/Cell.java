@@ -3,6 +3,7 @@ package com.bayviewglen.datastructures;
 public class Cell {
 	private int row;
 	private int col;
+	private int translation;
 	
 	public int getRow() {
 		return row;
@@ -23,6 +24,13 @@ public class Cell {
 	public Cell(int row, int col) {
 		this.row = row;
 		this.col = col;
+		this.translation = 0;
+	}
+	
+	public Cell(int row, int col, int translation) {
+		this.row = row - translation;
+		this.col = col - translation;
+		this.translation = translation;
 	}
 	
 	public boolean equals(Object o){
@@ -33,7 +41,7 @@ public class Cell {
 	}
 	
 	public String toString(){
-		return "("+row + ", " + col + ")";
+		return "("+(row + translation) + ", " + (col + translation) + ")";
 	}
 	
 	

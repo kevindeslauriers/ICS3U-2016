@@ -87,6 +87,21 @@ public class BreadthFirstPaths {
 
         assert check(G, s);
     }
+    
+    /**
+     * Computes the shortest path between the source vertex <tt>s</tt>
+     * and every other vertex in the graph <tt>G</tt>.
+     * @param G the graph
+     * @param s the source vertex
+     */
+    public BreadthFirstPaths(Graph G, int s, Cell[] rookMoves, int rows, int cols) {
+        marked = new boolean[G.V()];
+        distTo = new int[G.V()];
+        edgeTo = new int[G.V()];
+        bfs(G, s, rookMoves, rows, cols);
+
+        assert check(G, s);
+    }
 
     /**
      * Computes the shortest path between any one of the source vertices in <tt>sources</tt>
@@ -115,6 +130,36 @@ public class BreadthFirstPaths {
             int v = q.dequeue();
             for (int w : G.adj(v)) {
                 if (!marked[w]) {
+                    edgeTo[w] = v;
+                    distTo[w] = distTo[v] + 1;
+                    marked[w] = true;
+                    q.enqueue(w);
+                }
+            }
+        }
+    }
+    
+    // breadth-first search from a single source
+    private void bfs(Graph G, int s, Cell[] rookMoves, int rows, int cols) {
+        Queue<Integer> q = new Queue<Integer>();
+        
+    	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(rows, cols);
+        
+        for (int v = 0; v < G.V(); v++) distTo[v] = INFINITY;
+        distTo[s] = 0;
+        marked[s] = true;
+        q.enqueue(s);
+        
+        
+        
+        while (!q.isEmpty()) {
+            int v = q.dequeue();
+            for (int w : G.adj(v)) {
+            	// will w cause the knight to get attacked by the rook
+            	Cell knightPosition = vertexCellMap.get(w);
+            	Cell rookPosition = rookMoves[distTo[v]];
+            	boolean isSafe = (knightPosition.getCol() != rookPosition.getCol()) && (knightPosition.getRow() != rookPosition.getRow());
+                if (isSafe && !marked[w]) {
                     edgeTo[w] = v;
                     distTo[w] = distTo[v] + 1;
                     marked[w] = true;
@@ -230,7 +275,8 @@ public class BreadthFirstPaths {
      */
     public static void main(String[] args) {
         //test1();
-    	test2();		
+    	test2();
+    	
     }
     
     private static void test1(){
@@ -287,4 +333,6 @@ public class BreadthFirstPaths {
             StdOut.printf("%d to %d (-):  not connected\n", start, v);
         }
     }
+    
+    
 }
