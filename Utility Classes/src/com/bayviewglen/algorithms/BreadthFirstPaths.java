@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import com.bayviewglen.datastructures.Cell;
+import com.bayviewglen.datastructures.Cell_3D;
 import com.bayviewglen.datastructures.Graph;
 import com.bayviewglen.datastructures.Queue;
 import com.bayviewglen.datastructures.Stack;
@@ -102,6 +103,21 @@ public class BreadthFirstPaths {
 
         assert check(G, s);
     }
+    
+    /**
+     * Computes the shortest path between the source vertex <tt>s</tt>
+     * and every other vertex in the graph <tt>G</tt>.
+     * @param G the graph
+     * @param s the source vertex
+     */
+    public BreadthFirstPaths(Graph G, int s, Cell_3D[] queenMoves, int rows, int cols, int height) {
+        marked = new boolean[G.V()];
+        distTo = new int[G.V()];
+        edgeTo = new int[G.V()];
+        bfs(G, s, queenMoves, rows, cols, height);
+
+        assert check(G, s);
+    }
 
     /**
      * Computes the shortest path between any one of the source vertices in <tt>sources</tt>
@@ -159,6 +175,37 @@ public class BreadthFirstPaths {
             	Cell knightPosition = vertexCellMap.get(w);
             	Cell rookPosition = rookMoves[distTo[v]];
             	boolean isSafe = (knightPosition.getCol() != rookPosition.getCol()) && (knightPosition.getRow() != rookPosition.getRow());
+                if (isSafe && !marked[w]) {
+                    edgeTo[w] = v;
+                    distTo[w] = distTo[v] + 1;
+                    marked[w] = true;
+                    q.enqueue(w);
+                }
+            }
+        }
+    }
+    
+ // breadth-first search from a single source
+    private void bfs(Graph G, int s, Cell_3D[] queenMoves, int rows, int cols, int height) {
+        Queue<Integer> q = new Queue<Integer>();
+        
+    	HashMap<Integer, Cell_3D> vertexCellMap = Utils.create3DVertexHashMap(rows, cols, height);
+        
+        for (int v = 0; v < G.V(); v++) distTo[v] = INFINITY;
+        distTo[s] = 0;
+        marked[s] = true;
+        q.enqueue(s);
+        
+        while (!q.isEmpty()) {
+            int v = q.dequeue();
+            for (int w : G.adj(v)) {
+            	// will w cause the knight to get attacked by the rook
+            	Cell_3D knightPosition = vertexCellMap.get(w);
+            	Cell_3D queenPosition = queenMoves[distTo[v]];
+            	boolean isSafe = (knightPosition.getCol() != queenPosition.getCol()) && (knightPosition.getRow() != queenPosition.getRow())  && (knightPosition.getZ() != queenPosition.getZ());
+            	isSafe = isSafe && !(Math.abs(knightPosition.getCol() - queenPosition.getCol()) == Math.abs(knightPosition.getRow() - queenPosition.getRow()));
+            	isSafe = isSafe && !(Math.abs(knightPosition.getCol() - queenPosition.getCol()) == Math.abs(knightPosition.getZ() - queenPosition.getZ()));
+            	isSafe = isSafe && !(Math.abs(knightPosition.getRow() - queenPosition.getRow()) == Math.abs(knightPosition.getZ() - queenPosition.getZ()));
                 if (isSafe && !marked[w]) {
                     edgeTo[w] = v;
                     distTo[w] = distTo[v] + 1;
