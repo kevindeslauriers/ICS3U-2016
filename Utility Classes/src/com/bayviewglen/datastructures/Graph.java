@@ -177,6 +177,110 @@ public class Graph {
         
     }
     
+    public Graph(int x, int y, int z, boolean allowAdjacent, boolean allowDiagonals, boolean allowKnights) {
+        
+    	if (x < 0 || y < 0 || z < 0) throw new IllegalArgumentException("x, y and z of grid must be nonnegative");
+    	
+        this.V = x*y*z;
+        this.E = 0;
+        adj = (Bag<Integer>[]) new Bag[V];
+        for (int v = 0; v < V; v++) {
+            adj[v] = new Bag<Integer>();
+        }
+        
+        // now we need to add the edges
+        // if allowDiagonals is false || true then we can only go up down left and right.
+        if (allowAdjacent){
+        	int numCellsInLayer = x*y;
+        	for (int j=0;j<z; j++){
+        		int translation = numCellsInLayer * j;
+
+		        for (int i=0;i<x*y; i++){
+			        if ((i+1)%y != 0)
+			        	addEdge(i+translation,i+translation+1);	// adds an edge to the right and vice versa (East)
+			        
+			        if (i%y != 0)
+			        	addEdge(i+translation,i+translation-1);	// adds an edge to the left and vice versa (West)
+			        
+			        if (i<x*y-y)		// adds an edge to the north if you can 
+			        	addEdge(i+translation,i+translation+y);
+			        
+			        if (i>y)			// adds an edge to the south if you can
+			        	addEdge(i+translation,i+translation-y);
+			        
+			        // add up
+			        if (j != 0){
+			        	// we can go up
+			        }
+			        
+			        // add down
+			        if (j<z-1){
+			        	// we can go down			        	
+			        }
+		        }
+        	}
+        }
+        /*
+        // if allowDiagonals is true then we can also go in the four diagonals -> adjacent Diagonals
+        if (allowDiagonals){
+        	for (int i=0;i<x-1;i++){		// bottom right
+        		for (int j=0;j<y-1;j++){
+        			addEdge(i*y+j,(i+1)*y+j+1);
+        		}
+        	}
+        	
+        	for (int i=1;i<x-1;i++){		// bottom left
+        		for (int j=0;j<y-1;j++){
+        			addEdge(i*y+j,(i+1)*y+j-1);
+        		}
+        	}
+        }
+        
+        if (allowKnights){
+        	
+        	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(x,y);
+        	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(x,y);
+        	
+        		for (int i=0;i<x*y; i++){	// we have row x col vertices
+        			Cell v = vertexCellMap.get(i);
+        			Integer j = cellVertexMap.get(new Cell(v.getRow()+2,v.getCol()+1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getRow()+2,v.getCol()-1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getRow()-2,v.getCol()+1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getRow()-2,v.getCol()-1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getRow()+1,v.getCol()+2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getRow()+1,v.getCol()-2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getRow()-1,v.getCol()+2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell(v.getRow()-1,v.getCol()-2));
+        			if (j != null)
+        				addEdge(i,j);
+        		}
+        	
+        }
+        */
+        
+    }
+    
 
     /**  
      * Initializes a graph from an input stream.
@@ -336,15 +440,14 @@ public class Graph {
         return s.toString();
     }
 
-
     /**
      * Unit tests the <tt>Graph</tt> data type.
      */
     public static void main(String[] args) {
-        In in = new In(new File("testdata/tinyGraph.dat"));
-        Graph G = new Graph(in);
+        //In in = new In(new File("testdata/tinyGraph.dat"));
+        Graph G = new Graph(4,4,4,true,false,false);
         
-        G.disconnectVertex(5);
+     //   G.disconnectVertex(5);
         StdOut.println(G);
     }
 
