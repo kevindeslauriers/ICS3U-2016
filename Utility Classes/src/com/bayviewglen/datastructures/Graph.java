@@ -222,7 +222,7 @@ public class Graph {
 		        }
         	}
         }
-        
+        /*
         // if allowDiagonals is true then we can also go in the four diagonals -> adjacent Diagonals
         if (allowDiagonals){
         	for (int i=0;i<x-1;i++){		// bottom right
@@ -230,13 +230,13 @@ public class Graph {
         			addEdge(i*y+j,(i+1)*y+j+1);
         		}
         	}
+        	
         	for (int i=1;i<x-1;i++){		// bottom left
         		for (int j=0;j<y-1;j++){
         			addEdge(i*y+j,(i+1)*y+j-1);
         		}
         	}
         }
-        
         
         if (allowKnights){
         	
@@ -276,12 +276,10 @@ public class Graph {
         			j = cellVertexMap.get(new Cell(v.getRow()-1,v.getCol()-2));
         			if (j != null)
         				addEdge(i,j);
-
-        			
         		}
         	
         }
-        
+        */
         
     }
     
@@ -449,7 +447,7 @@ public class Graph {
      */
     public static void main(String[] args) {
         //In in = new In(new File("testdata/tinyGraph.dat"));
-        Graph G = new Graph(4,4,4,true,false,true);
+        Graph G = new Graph(4,4,4,true,false,false);
         
      //   G.disconnectVertex(5);
         StdOut.println(G);
