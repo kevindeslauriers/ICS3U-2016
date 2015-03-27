@@ -1,0 +1,27 @@
+package com.bayviewglen.test;
+
+import java.util.HashMap;
+
+import com.bayviewglen.datastructures.Cell;
+import com.bayviewglen.datastructures.Cell_3D;
+import com.bayviewglen.utils.Utils;
+
+public class Test3DConversion {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int rows = 4;
+		int cols = 4;
+		int layers = 4;
+		HashMap<Cell_3D, Integer> cellVertexMap = Utils.create3DGridHashMap(rows,cols,layers);
+    	HashMap<Integer, Cell_3D> vertexCellMap = Utils.create3DVertexHashMap(rows,cols,layers);
+    	
+    		
+    			Cell_3D v = vertexCellMap.get(15);
+    			Integer j = cellVertexMap.get(new Cell(0,0,16));
+    			
+    			System.out.println(v + "\n" + j);
+    			
+	}
+
+}
