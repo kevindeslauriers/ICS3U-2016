@@ -43,9 +43,11 @@ public class Utils {
 		HashMap<Cell_3D,Integer> temp = new HashMap<Cell_3D,Integer>();
 		
 		// add another for loop
-		for (int r=0; r<x; ++r){
-			for (int c=0; c<y; ++c){
-				temp.put(new Cell_3D(r,c), r*y+c);
+		for (int h=0;h<z;h++){
+			for (int r=0; r<x; ++r){
+				for (int c=0; c<y; ++c){
+					temp.put(new Cell_3D(r,c,h), r*y+c+h*x*y);
+				}
 			}
 		}
 		
@@ -58,13 +60,23 @@ public class Utils {
 		HashMap<Integer,Cell_3D> temp = new HashMap<Integer,Cell_3D>();
 		
 		// add another for loop
-		for (int r=0; r<x; ++r){
-			for (int c=0; c<y; ++c){
-				temp.put( r*y+c, new Cell_3D(r,c));
+		for (int h=0;h<z;h++){
+			for (int r=0; r<x; ++r){
+				for (int c=0; c<y; ++c){
+					temp.put( r*y+c+h*x*y, new Cell_3D(r,c,h));
+				}
 			}
 		}
-		
 		return temp;
+		
+	}
+	
+	public static void main(String[] args){
+		HashMap<Cell_3D, Integer> vertexMap = Utils.create3DGridHashMap(4, 4, 4);
+		HashMap<Integer, Cell_3D> cellMap = Utils.create3DVertexHashMap(4, 4, 4);
+		
+		cellMap.get(15);
+		
 		
 	}
 }
