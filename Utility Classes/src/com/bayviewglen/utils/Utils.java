@@ -75,7 +75,7 @@ public class Utils {
 		HashMap<Cell_3D, Integer> vertexMap = Utils.create3DGridHashMap(4, 4, 4);
 		HashMap<Integer, Cell_3D> cellMap = Utils.create3DVertexHashMap(4, 4, 4);
 		
-		cellMap.get(15);
+		System.out.println(cellMap.get(15));
 		
 		
 	}
