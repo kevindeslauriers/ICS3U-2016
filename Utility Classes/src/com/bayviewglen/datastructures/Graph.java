@@ -211,10 +211,12 @@ public class Graph {
 			        // add up
 			        if (j != 0){
 			        	// we can go up
+			        	addEdge(i+translation, i+translation-numCellsInLayer);
 			        }
 			        
 			        // add down
 			        if (j<z-1){
+			        	addEdge(i+translation, i+translation+numCellsInLayer);
 			        	// we can go down			        	
 			        }
 		        }
