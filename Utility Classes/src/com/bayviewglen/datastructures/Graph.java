@@ -123,12 +123,14 @@ public class Graph {
         if (allowDiagonals){
         	for (int i=0;i<rows-1;i++){		// bottom right
         		for (int j=0;j<cols-1;j++){
+        			//System.out.println((i*cols+j) + " -> " + ((i+1)*cols+j+1));
         			addEdge(i*cols+j,(i+1)*cols+j+1);
         		}
         	}
         	
-        	for (int i=1;i<rows-1;i++){		// bottom left
-        		for (int j=0;j<cols-1;j++){
+        	for (int i=0;i<rows-1;i++){		// bottom left
+        		for (int j=1;j<cols;j++){
+        			//System.out.println((i*cols+j) + " -> " + ((i+1)*cols+j-1));
         			addEdge(i*cols+j,(i+1)*cols+j-1);
         		}
         	}
@@ -448,7 +450,7 @@ public class Graph {
      */
     public static void main(String[] args) {
         //In in = new In(new File("testdata/tinyGraph.dat"));
-        Graph G = new Graph(4,4,4,true,false,false);
+        Graph G = new Graph(4,5,false,true,false);
         
      //   G.disconnectVertex(5);
         StdOut.println(G);
