@@ -3,6 +3,7 @@ package com.bayviewglen.datastructures;
 public class Cell_3D extends Cell {
 
 	private int z;
+	private int translation;
 	
 	public Cell_3D(int row, int col) {
 		super(row, col);
@@ -14,6 +15,12 @@ public class Cell_3D extends Cell {
 		this.z = z;
 	}
 	
+	public Cell_3D(int x, int y, int z, int translation){
+		super(x, y);
+		this.z = z;
+		this.translation = translation;
+	}
+	
 	public boolean equals(Object o){
 	    if (o instanceof Cell) { 
 	    	return ((Cell_3D)o).getRow() == getRow() && ((Cell_3D)o).getCol() == getCol() && ((Cell_3D)o).z == z;
@@ -23,7 +30,7 @@ public class Cell_3D extends Cell {
 	}
 	
 	public String toString(){
-		return "("+getRow() + ", " + getCol() + ", " + z + ")";
+		return "("+(getRow()+translation) + ", " + (getCol()+translation) + ", " + (z+translation) + ")";
 	}
 	
 	
@@ -31,4 +38,7 @@ public class Cell_3D extends Cell {
 		return Integer.valueOf(getRow()).hashCode() + Integer.valueOf(getCol()).hashCode() + Integer.valueOf(z).hashCode();
 	}
 
+	public int getZ(){
+		return this.z;
+	}
 }

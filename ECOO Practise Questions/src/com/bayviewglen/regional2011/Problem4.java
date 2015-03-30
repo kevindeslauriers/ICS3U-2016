@@ -41,7 +41,7 @@ public class Problem4 {
     	
     		int start = cellVertexMap.get(startingCell);
     	
-	    	Cell[] rookMoves = new Cell[8];
+	    	Cell[] rookMoves = new Cell[9];
 	    	int xVal = 0;
 	    	int yVal = 0;
 	    	
