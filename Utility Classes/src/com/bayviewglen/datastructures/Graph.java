@@ -225,24 +225,24 @@ public class Graph {
 		        }
         	}
         }
-        /*
-        // if allowDiagonals is true then we can also go in the four diagonals -> adjacent Diagonals
-         if (allowDiagonals){
-        	for (int i=0;i<rows-1;i++){		// bottom right
-        		for (int j=0;j<cols-1;j++){
+
+        /* Does not work for 3d yet only 2d */
+        if (allowDiagonals){
+        	for (int i=0;i<x-1;i++){		// bottom right
+        		for (int j=0;j<y-1;j++){
         			//System.out.println((i*cols+j) + " -> " + ((i+1)*cols+j+1));
-        			addEdge(i*cols+j,(i+1)*cols+j+1);
+        			addEdge(i*y+j,(i+1)*y+j+1);
         		}
         	}
         	
-        	for (int i=0;i<rows-1;i++){		// bottom left
-        		for (int j=1;j<cols;j++){
+        	for (int i=0;i<x-1;i++){		// bottom left
+        		for (int j=1;j<y;j++){
         			//System.out.println((i*cols+j) + " -> " + ((i+1)*cols+j-1));
-        			addEdge(i*cols+j,(i+1)*cols+j-1);
+        			addEdge(i*y+j,(i+1)*y+j-1);
         		}
         	}
         }
-        */
+        
         if (allowKnights){
         	
         	HashMap<Cell_3D, Integer> cellVertexMap = Utils.create3DGridHashMap(x,y,z);
