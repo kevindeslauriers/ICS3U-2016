@@ -242,49 +242,118 @@ public class Graph {
         		}
         	}
         }
-        
+        */
         if (allowKnights){
         	
-        	HashMap<Cell, Integer> cellVertexMap = Utils.createGridHashMap(x,y);
-        	HashMap<Integer, Cell> vertexCellMap = Utils.createVertexHashMap(x,y);
+        	HashMap<Cell_3D, Integer> cellVertexMap = Utils.create3DGridHashMap(x,y,z);
+        	HashMap<Integer, Cell_3D> vertexCellMap = Utils.create3DVertexHashMap(x,y,z);
         	
-        		for (int i=0;i<x*y; i++){	// we have row x col vertices
-        			Cell v = vertexCellMap.get(i);
-        			Integer j = cellVertexMap.get(new Cell(v.getRow()+2,v.getCol()+1));
+        		for (int i=0;i<x*y*z; i++){	// we have row x col vertices
+        			Cell_3D v = vertexCellMap.get(i);
+        			
+        			Integer j = cellVertexMap.get(new Cell_3D(v.getRow()+2,v.getCol()+1, v.getZ()));
         			if (j != null)
         				addEdge(i,j);
         			
-        			j = cellVertexMap.get(new Cell(v.getRow()+2,v.getCol()-1));
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()+2,v.getCol()-1, v.getZ()));
         			if (j != null)
         				addEdge(i,j);
         			
-        			j = cellVertexMap.get(new Cell(v.getRow()-2,v.getCol()+1));
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()-2,v.getCol()+1, v.getZ()));
         			if (j != null)
         				addEdge(i,j);
         			
-        			j = cellVertexMap.get(new Cell(v.getRow()-2,v.getCol()-1));
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()-2,v.getCol()-1, v.getZ()));
         			if (j != null)
         				addEdge(i,j);
         			
-        			j = cellVertexMap.get(new Cell(v.getRow()+1,v.getCol()+2));
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()+1,v.getCol()+2, v.getZ()));
         			if (j != null)
         				addEdge(i,j);
         			
-        			j = cellVertexMap.get(new Cell(v.getRow()+1,v.getCol()-2));
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()+1,v.getCol()-2, v.getZ()));
         			if (j != null)
         				addEdge(i,j);
         			
-        			j = cellVertexMap.get(new Cell(v.getRow()-1,v.getCol()+2));
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()-1,v.getCol()+2, v.getZ()));
         			if (j != null)
         				addEdge(i,j);
         			
-        			j = cellVertexMap.get(new Cell(v.getRow()-1,v.getCol()-2));
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()-1,v.getCol()-2, v.getZ()));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()+1,v.getCol(), v.getZ()+2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()-1,v.getCol(), v.getZ()+2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow(),v.getCol()+1, v.getZ()+2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow(),v.getCol()-1, v.getZ()+2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()+1,v.getCol(), v.getZ()-2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()-1,v.getCol(), v.getZ()-2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow(),v.getCol()+1, v.getZ()-2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow(),v.getCol()-1, v.getZ()-2));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()+2,v.getCol(), v.getZ()+1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()-2,v.getCol(), v.getZ()+1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow(),v.getCol()+2, v.getZ()+1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow(),v.getCol()-2, v.getZ()+1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()+2,v.getCol(), v.getZ()-1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow()-2,v.getCol(), v.getZ()-1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow(),v.getCol()+2, v.getZ()-1));
+        			if (j != null)
+        				addEdge(i,j);
+        			
+        			j = cellVertexMap.get(new Cell_3D(v.getRow(),v.getCol()-2, v.getZ()-1));
         			if (j != null)
         				addEdge(i,j);
         		}
         	
         }
-        */
+        
         
     }
     
@@ -452,7 +521,7 @@ public class Graph {
      */
     public static void main(String[] args) {
         //In in = new In(new File("testdata/tinyGraph.dat"));
-        Graph G = new Graph(4,5,false,true,false);
+        Graph G = new Graph(4,4,4,false,false,true);
         
      //   G.disconnectVertex(5);
         StdOut.println(G);
