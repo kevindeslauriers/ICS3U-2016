@@ -134,7 +134,7 @@ public class Problem3 {
 	}
 
 
-	private static Integer solveUsingMem(Integer amt) {
+	private static int solveUsingMem(Integer amt) {
 			if (amt < 3)
 				return Integer.MAX_VALUE;
 		
@@ -149,8 +149,8 @@ public class Problem3 {
 				
 				for(int j=0; j<coins.length; j++){
 					int value = coins[j];
-					Integer temp = solveUsingMem(amt - value);
-					if ((temp != null) && temp < minValue){
+					int temp = solveUsingMem(amt - value);
+					if ((temp != Integer.MAX_VALUE) && temp < minValue){
 						minValue = temp + 1;
 					}
 				}

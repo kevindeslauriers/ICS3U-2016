@@ -16,8 +16,6 @@ public class Problem2 {
 	public static void main(String[] args) throws FileNotFoundException {
 		Scanner input = new Scanner(new File("input/regional_q2_2014.dat"));
 		
-		
-		
 		while(input.hasNext()){	
 			String firstLine = input.nextLine();	// grab the lines since the go in pairs I can
 			String secondLine = input.nextLine();	// realistically throw away the second line.
