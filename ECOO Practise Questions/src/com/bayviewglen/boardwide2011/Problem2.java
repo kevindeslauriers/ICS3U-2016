@@ -10,10 +10,16 @@ public class Problem2 {
 	// Let's keep an hashmap where the key is a string of x and o and the value is the letter.
 	
 	static HashMap<String, String> letterMap = new HashMap<String, String>(); 
-	
+	/*
+	 * xo
+	 * xx
+	 * oo
+	 * 
+	 * is stored as xoxxoo and is the H
+	 */
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		letterMap.put("xooooo", "A");
+		letterMap.put("xooooo", "A");		
 		letterMap.put("xoxooo", "B");
 		letterMap.put("xxoooo", "C");
 		letterMap.put("xxoxoo", "D");
