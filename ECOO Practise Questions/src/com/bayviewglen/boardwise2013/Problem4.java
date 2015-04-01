@@ -35,7 +35,25 @@ public class Problem4 {
 	}
 
 	private static double solveUsingDP(double[] prices, String[] coupons) {
-		// TODO Auto-generated method stub
+		double[][] possibleSolutions = new double[prices.length][coupons.length];
+		
+		
+		for (int c=0; c<coupons.length; ++c){
+			possibleSolutions[0][c] = 0.0;
+		}
+		
+		for (int p=0; p<prices.length; ++p){
+			possibleSolutions[p][0] = 0.0;
+		}
+		
+		for (int i=1;i<prices.length; i++){
+			for (int j=0; j<coupons.length; ++j){
+				
+			}
+		}
+		
+
+		
 		return 0;
 	}
 
