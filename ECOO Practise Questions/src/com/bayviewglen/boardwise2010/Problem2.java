@@ -34,7 +34,7 @@ public class Problem2 {
 			while (decryptedMessage.charAt(k) == '.'){
 				k--;
 			}	
-			decryptedMessage = decryptedMessage.substring(0, k);
+			decryptedMessage = decryptedMessage.substring(0, k+1);
 			
 			System.out.println(decryptedMessage);
 			
