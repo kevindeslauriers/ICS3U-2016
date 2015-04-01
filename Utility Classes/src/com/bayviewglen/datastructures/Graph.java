@@ -123,14 +123,14 @@ public class Graph {
         if (allowDiagonals){
         	for (int i=0;i<rows-1;i++){		// bottom right
         		for (int j=0;j<cols-1;j++){
-        			//System.out.println((i*cols+j) + " -> " + ((i+1)*cols+j+1));
+        			System.out.println((i*cols+j) + " -> " + ((i+1)*cols+j+1));
         			addEdge(i*cols+j,(i+1)*cols+j+1);
         		}
         	}
         	
         	for (int i=0;i<rows-1;i++){		// bottom left
         		for (int j=1;j<cols;j++){
-        			//System.out.println((i*cols+j) + " -> " + ((i+1)*cols+j-1));
+        			System.out.println((i*cols+j) + " -> " + ((i+1)*cols+j-1));
         			addEdge(i*cols+j,(i+1)*cols+j-1);
         		}
         	}
@@ -227,21 +227,106 @@ public class Graph {
         }
 
         /* Does not work for 3d yet only 2d */
-        if (allowDiagonals){
-        	for (int i=0;i<x-1;i++){		// bottom right
-        		for (int j=0;j<y-1;j++){
-        			//System.out.println((i*cols+j) + " -> " + ((i+1)*cols+j+1));
-        			addEdge(i*y+j,(i+1)*y+j+1);
-        		}
-        	}
-        	
-        	for (int i=0;i<x-1;i++){		// bottom left
-        		for (int j=1;j<y;j++){
-        			//System.out.println((i*cols+j) + " -> " + ((i+1)*cols+j-1));
-        			addEdge(i*y+j,(i+1)*y+j-1);
-        		}
-        	}
-        }
+		if (allowDiagonals) {
+			int numCellsInLayer = x * y;
+			for (int k = 0; k < z; k++) {
+				int translation = numCellsInLayer * k;
+
+				for (int i = 0; i < x - 1; i++) {
+					// right
+					for (int j = 0; j < y - 1; j++) {
+						// System.out.println((i*cols+j) + " -> " +
+						// ((i+1)*cols+j+1));
+						addEdge(i * y + j + translation, (i + 1) * y + j + 1 + translation);
+					}
+				}
+
+				for (int i = 0; i < x - 1; i++) {
+					// left
+					for (int j = 1; j < y; j++) {
+						// System.out.println((i*cols+j) + " -> " +
+						// ((i+1)*cols+j-1));
+						addEdge(i * y + j + translation, (i + 1) * y + j - 1 + translation);
+					}
+				}
+				for (int i = 0; i < x - 1; i++) {
+
+					// top right
+					for (int j = 0; j < y - 1; j++) {
+						if ((i + 1) * y + j + 1 + translation + x * y < x * y * z)
+							addEdge(i * y + j + translation, (i + 1) * y + j + 1 + translation + x * y);
+					}
+				}
+
+				for (int i = 0; i < x - 1; i++) {
+
+					// top left
+					for (int j = 1; j < y; j++) {
+						if ((i + 1) * y + j - 1 + translation + x * y < x * y * z)
+							addEdge(i * y + j + translation, (i + 1) * y + j - 1 + translation + x * y);
+					}
+				}
+
+				for (int i = 0; i < x - 1; i++) {
+
+					// bottom right
+					for (int j = 0; j < y - 1; j++) {
+						if ((i + 1) * y + j + 1 + translation - x * y >= 0)
+							addEdge(i * y + j + translation, (i + 1) * y + j + 1 + translation - x * y);
+					}
+				}
+				for (int i = 0; i < x - 1; i++) {
+
+					// bottom left
+					for (int j = 1; j < y; j++) {
+						if ((i + 1) * y + j - 1 + translation - x * y >= 0)
+							addEdge(i * y + j + translation, (i + 1) * y + j + -1 + translation - x * y);
+					}
+				}
+			}
+
+			numCellsInLayer = x * y;
+			for (int j = 0; j < z; j++) {
+				int translation = numCellsInLayer * j;
+
+				for (int i = 0; i < x * y; i++) {
+					if ((i + 1) % y != 0) {// Right top
+						if (i + translation + 1 + x * y < x * y * z) {
+							addEdge(i + translation, i + translation + 1 + x * y);
+
+						}
+						if (i + translation + 1 - x * y > 0) {// right bottom
+							addEdge(i + translation, i + translation + 1 - x * y);
+
+						}
+					}
+
+					if (i % y != 0) {
+						if (i + translation - 1 + x * y < x * y * z) { // Left
+																		// Top
+							addEdge(i + translation, i + translation - 1 + x * y);
+						}
+
+						if (i + translation - 1 - x * y > 0) {// Left bottom
+							addEdge(i + translation, i + translation - 1 - x * y);
+
+						}
+					}
+
+					if (i < x * y - y) {
+						// top north
+						if (i + translation + y + x * y < x * y * z) {
+							addEdge(i + translation, i + translation + y + x * y);
+						}
+						if (i + translation + y - x * y > 0) { // bottom north
+							addEdge(i + translation, i + translation + y - x * y);
+						}
+					}
+
+				}
+
+			}
+		}
         
         if (allowKnights){
         	
@@ -521,7 +606,7 @@ public class Graph {
      */
     public static void main(String[] args) {
         //In in = new In(new File("testdata/tinyGraph.dat"));
-        Graph G = new Graph(4,4,4,false,false,true);
+        Graph G = new Graph(4,4,false,true,false);
         
      //   G.disconnectVertex(5);
         StdOut.println(G);
