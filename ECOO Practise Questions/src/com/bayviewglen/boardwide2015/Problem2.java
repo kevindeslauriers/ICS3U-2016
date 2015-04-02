@@ -22,26 +22,23 @@ public class Problem2 {
 				if (!theLine.isEmpty())
 					theLine += " ";
 				
-				
-				
-				
 				if (theLine.length() + s.length() <= width){
 					theLine += s;
-					if (j == words.length-1 || theLine.length() + words[j+1].length() <= width){
-						System.out.println(theLine);
-					}
+					if (j == words.length-1) System.out.println(theLine);
 					
 				}else if (s.length() > width){
+					System.out.println(theLine);
 					int numSegments = s.length() / width;
 					for (int i=0; i< numSegments; ++i){
-						System.out.println(s.substring(i*numSegments, i*numSegments + numSegments));
+						System.out.println(s.substring(i*numSegments, i*numSegments + width));
 					}
 					
 					if (s.length() % width != 0){
-						theLine = s.substring(numSegments*numSegments);
+						theLine = s.substring(numSegments*width);
+						System.out.println(theLine);
 					}
 
-				}else {
+				}else{
 					System.out.println(theLine);
 					theLine = "";
 					j--;
@@ -49,9 +46,9 @@ public class Problem2 {
 				
 				
 			}
-			
+			System.out.println("===");
 		}
-
+		
 	}
 
 }

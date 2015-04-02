@@ -12,6 +12,14 @@ public class ExampleOne {
 		numbers.add(25);
 		numbers.add(35);
 		
+		for (Integer i : numbers){
+			System.out.println(i);
+		}
+		
+		for (int j=0; j< numbers.size(); j++){
+			System.out.println(numbers.get(j));
+		}
+		
 		ArrayList<Integer> numbers2 = new ArrayList<Integer>();
 		
 		numbers2.add(5);
@@ -20,7 +28,7 @@ public class ExampleOne {
 		numbers2.add(35);
 		numbers2.addAll(numbers);
 		
-		numbers2.add(12, 100);
+		numbers2.add(20, 100);
 		
 		for (Integer i : numbers2){
 			System.out.println(i);
