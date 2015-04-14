@@ -1,0 +1,9 @@
+Room Name: Room 1
+Room Description:  This is room<br>1
+Exit Rooms: E-Room 2
+Room Name: Room 2
+Room Description:  This is Room 2
+Exit Rooms: W-Room 1, U-Room 3
+Room Name: Room 3
+Room Description:  You are upstairs.
+Exit Rooms: D-Room 2
