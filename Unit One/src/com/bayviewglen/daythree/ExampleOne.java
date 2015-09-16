@@ -15,7 +15,7 @@ public class ExampleOne {
 		
 		System.out.println("This\nis\nimportant!");
 		
-		// System.out.println("This \g is important!");  /g is not an escape sequence
+		// System.out.println("This \g is important!");  \g is not an escape sequence
 		
 		
 	}
