@@ -1,0 +1,94 @@
+package com.bayviewglen.blackjack;
+
+import java.util.Scanner;
+
+public class BlackJackSample {
+
+
+	private static final int DEFAULT_STARTING_WALLET = 500;
+	private static Scanner scanner = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int wallet = DEFAULT_STARTING_WALLET;
+		boolean playAgain = true;
+		
+		String firstName;
+		
+		System.out.print("Hello, what is your name? ");
+		firstName = scanner.nextLine();
+		System.out.println("Hello, " + firstName + " you look happy today. Would you like to lose some money?");
+		scanner.nextLine();
+		System.out.println("Whatever, let's play some Black Jack!");
+		
+		
+		while(wallet > 0 && playAgain){
+			int currentBet = getBet(wallet);
+			boolean isWinner = playHand(currentBet, wallet);
+			if (isWinner){
+				wallet += currentBet;
+			}else{
+				wallet -= currentBet;
+			}
+			
+			if (wallet > 0)
+				playAgain = playAgain();
+			else
+				System.out.println("HAHAHA!!!! You lost all your Money!!!!");
+			
+		}
+		
+		System.out.println("Come back and play again soon!!!! With more money!!!");
+		
+		
+		
+
+	}
+	
+	private static boolean playAgain() {
+		String answer = "";
+		
+		
+		while (!(answer.equals("y") || answer.equals("yes") || answer.equals("n") || answer.equals("no"))){
+			System.out.println("Would you like to play again? ");
+			answer = scanner.nextLine();
+			answer = answer.toLowerCase();
+			if (answer.equals("n") || answer.equals("no")){
+				return false;
+			}else if (answer.equals("y") || answer.equals("yes")){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// return true if the player wins and false if the dealer wins (if it is a draw the player wins)
+	private static boolean playHand(int currentBet, int wallet) {
+		
+		return false;
+	}
+
+	/* ensure that the bet is <= wallet and > 0 */
+	/* ensure the bet is an integer */
+	static int getBet(int maxBet){
+		boolean validBet = false;
+		// prompt user for a valid bet
+		while (!validBet){
+			System.out.print("Please enter a bet (you have " + maxBet + " dollars: ");
+			try{
+				String sBet = scanner.nextLine();
+				int bet = Integer.parseInt(sBet);
+				if (bet > 0 && bet <= maxBet)
+					return bet;
+				else
+					System.out.println("Ahhhh.... you need to bet a value between 0 and " + maxBet);
+			}catch(Exception ex){
+				System.out.println("Ummmm.... not a valid int!!!");
+			}
+		}
+
+		return 0;
+		
+	}
+	
+
+}
