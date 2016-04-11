@@ -63,7 +63,7 @@ public class Bug extends Actor {
 	}
 	
 	public String toString(){
-		return "BUG" + getDirection();
+		return "BUG - " + getDirection();
 	}
 
 }
