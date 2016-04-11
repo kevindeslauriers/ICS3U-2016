@@ -1,0 +1,15 @@
+The Bug Act Method does the following:
+
+1. Moves forward if it can.
+2. If it cannot move forward rotate 90 degrees clockwise.
+3. A bug will eat a flower but cannot move through a rock or another bug.
+4. If a bug does not eat in 10 turns it will die.
+
+GrassHopper
+1. Moves like a bug unless there is an obstacle in front of it.
+2. If it can jump over the obstacle it does.  
+3. A grasshopper can only jump over one spot in the grid.
+
+LoveBug
+1. Moves like a bug.
+2. If there is an adjacent LoveBug the two LoveBugs will add a new LoveBug to the Grid at an adjacent location.
