@@ -13,3 +13,5 @@ GrassHopper
 LoveBug
 1. Moves like a bug.
 2. If there is an adjacent LoveBug the two LoveBugs will add a new LoveBug to the Grid at an adjacent location.
+3. A newly created Love bug must wait 5 terms to breed.
+4. A love bug must wait 5 turns after breeding before breeding
