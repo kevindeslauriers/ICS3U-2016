@@ -22,7 +22,7 @@ public class Bug extends Actor {
 			if (a != null){
 				a.removeSelfFromGrid();
 			}
-			move();
+			move(adjLoc);
 		}else {
 			rotate();
 		}
@@ -33,7 +33,7 @@ public class Bug extends Actor {
 		Grid g = getGrid();
 		// check it is a valid location
 		Location adjLoc = g.getAdjacentLocation(getLocation(), getDirection());
-		
+		 
 		if (g.validLocation(adjLoc)){
 			Actor a = g.getActor(adjLoc);
 			if (a instanceof Rock){
@@ -50,8 +50,9 @@ public class Bug extends Actor {
 		return false;
 	}
 
-	private void move() {
-		
+	private void move(Location newLoc) {
+		Grid g = getGrid();
+		g.moveTo(getLocation(), newLoc);
 		
 	}
 
@@ -62,7 +63,7 @@ public class Bug extends Actor {
 	}
 	
 	public String toString(){
-		return "BUG";
+		return "BUG" + getDirection();
 	}
 
 }

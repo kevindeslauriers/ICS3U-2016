@@ -32,7 +32,7 @@ public class Flower extends Actor {
 	}
 	
 	public String toString(){
-		return "FLOWER";
+		return "FLOWER" + getDirection();
 	}
 
 }

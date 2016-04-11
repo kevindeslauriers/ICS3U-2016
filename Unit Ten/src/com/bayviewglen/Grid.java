@@ -80,5 +80,12 @@ public class Grid {
 		}
 		
 	}
+
+	public void moveTo(Location oldLoc, Location newLoc) {
+		
+		actors[newLoc.getX()][newLoc.getY()] = actors[oldLoc.getX()][oldLoc.getY()];
+		actors[oldLoc.getX()][oldLoc.getY()] = null;
+		
+	}
 	
 }

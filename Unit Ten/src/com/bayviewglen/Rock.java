@@ -19,7 +19,7 @@ public class Rock extends Actor {
 	}
 	
 	public String toString(){
-		return "ROCK";
+		return "ROCK" + getDirection();
 	}
 
 }
