@@ -7,84 +7,98 @@ public class Grid {
 		actors = new Actor[10][10];
 	}
 	
-	public Grid(int w, int h){
-		actors = new Actor[w][h];
+	public Grid(int h, int w){
+		actors = new Actor[h][w];
 	}
 
 	public void step(){
 		for (int i=0; i<actors.length; ++i){
 			for (int j=0; j<actors[i].length; ++j){
-				if (actors[i][j] != null)
+				if (actors[i][j] != null && !actors[i][j].hasActed()){
+					Actor a = actors[i][j];
 					actors[i][j].act();
+					a.setActed(true);
+				}
+			}
+		}
+		
+		/* ensure after each step that the actors can act again */
+		for (int i=0; i<actors.length; ++i){
+			for (int j=0; j<actors[i].length; ++j){
+				if (actors[i][j] != null){
+					actors[i][j].setActed(false);
+				}
 			}
 		}
 	}
 
 	public Actor removeFromGrid(Location loc){
-		Actor temp = actors[loc.getX()][loc.getY()];
-		actors[loc.getX()][loc.getY()] = null;
+		Actor temp = actors[loc.getRow()][loc.getCol()];
+		actors[loc.getRow()][loc.getCol()] = null;
 
 		return temp;
 	}
 	
 	public Boolean validLocation(Location loc){
 		
-		return (loc.getY() >= 0) && (loc.getX() >= 0) && (loc.getY() < actors[0].length) && (loc.getX() < actors.length);
+		return (loc.getCol() >= 0) && (loc.getRow() >= 0) && (loc.getCol() < actors[0].length) && (loc.getRow() < actors.length);
 	}
 	
 	public Location getAdjacentLocation(Location loc, int dir){
-		int y = 0;
-		int x = 0;
+		int row = 0;
+		int col = 0;
 		
 		if (dir == DIRECTION.NORTH){
-			y--;
+			row--;
 		}else if (dir == DIRECTION.NORTH_EAST){
-			y--;
-			x++;
+			row--;
+			col++;
 		}else if (dir == DIRECTION.EAST){
-			x++;
+			col++;
 		}else if (dir == DIRECTION.SOUTH_EAST){
-			y++;
-			x++;
+			row++;
+			col++;
 		}else if (dir == DIRECTION.SOUTH){
-			y++;
+			row++;
 		}else if (dir == DIRECTION.SOUTH_WEST){
-			y++;
-			x--;
+			row++;
+			col--;
 		}else if (dir == DIRECTION.WEST){
-			y--;
+			col--;
 		}else if (dir == DIRECTION.NORTH_WEST){
-			y--;
-			x--;
+			row--;
+			col--;
 		}
 		
-		return new Location (loc.getX() + x, loc.getY() + y);
+		return new Location (loc.getRow() + row, loc.getCol() + col);
 		
 	}
 	
 	public Actor getActor(Location loc){
-		return actors[loc.getX()][loc.getY()];
+		return actors[loc.getRow()][loc.getCol()];
 	}
 	
 	public void addToGrid(Actor a, Location loc){
-		actors[loc.getX()][loc.getY()] = a;
+		actors[loc.getRow()][loc.getCol()] = a;
 	}
 
 	public void display() {
-		for (Actor[] actorRow : actors){
-			for (Actor a : actorRow){
-				System.out.print(a);
+		for (int i = 0; i< actors.length; ++i){
+			for (int j = 0; j< actors[i].length; ++j){
+				System.out.print(actors[i][j]);
 				System.out.print(" ");
 			}
 			System.out.println(" ");
 		}
 		
+		System.out.println("Step Completed\n");
+		
 	}
 
 	public void moveTo(Location oldLoc, Location newLoc) {
 		
-		actors[newLoc.getX()][newLoc.getY()] = actors[oldLoc.getX()][oldLoc.getY()];
-		actors[oldLoc.getX()][oldLoc.getY()] = null;
+		actors[newLoc.getRow()][newLoc.getCol()] = actors[oldLoc.getRow()][oldLoc.getCol()];
+		actors[oldLoc.getRow()][oldLoc.getCol()] = null;
 		
 	}
 	

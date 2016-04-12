@@ -53,6 +53,7 @@ public class Bug extends Actor {
 	private void move(Location newLoc) {
 		Grid g = getGrid();
 		g.moveTo(getLocation(), newLoc);
+		setLocation(newLoc);
 		
 	}
 

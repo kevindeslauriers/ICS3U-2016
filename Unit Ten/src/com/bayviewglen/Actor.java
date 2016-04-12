@@ -7,6 +7,8 @@ public abstract class Actor implements Locatable{
 	private int direction; // 0 - 359
 	private Location location;
 	private Grid myGrid;
+	private Boolean acted;
+	
 	
 	
 	public Color getColor() {
@@ -31,6 +33,7 @@ public abstract class Actor implements Locatable{
 	public Actor(){
 		color = Color.BLACK;
 		direction = DIRECTION.NORTH;
+		acted = false;
 	}
 	
 	public Actor(Color color, int direction, Location loc, Grid g) {
@@ -38,6 +41,7 @@ public abstract class Actor implements Locatable{
 		this.direction = direction;
 		this.location = loc;
 		this.myGrid = g;
+		this.acted = false;
 		if (g != null)
 			this.myGrid.addToGrid(this, loc);
 		
@@ -54,6 +58,14 @@ public abstract class Actor implements Locatable{
 	
 	public Grid getGrid(){
 		return myGrid;
+	}
+	
+	public void setActed(boolean acted){
+		this.acted = acted;
+	}
+	
+	public boolean hasActed(){
+		return acted;
 	}
 	
 }
