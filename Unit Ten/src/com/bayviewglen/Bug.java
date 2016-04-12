@@ -29,7 +29,7 @@ public class Bug extends Actor {
 		
 	}
 
-	private boolean canMove() {
+	protected boolean canMove() {
 		Grid g = getGrid();
 		// check it is a valid location
 		Location adjLoc = g.getAdjacentLocation(getLocation(), getDirection());
@@ -50,14 +50,14 @@ public class Bug extends Actor {
 		return false;
 	}
 
-	private void move(Location newLoc) {
+	protected void move(Location newLoc) {
 		Grid g = getGrid();
 		g.moveTo(getLocation(), newLoc);
 		setLocation(newLoc);
 		
 	}
 
-	private void rotate() {
+	protected void rotate() {
 		int newDirection = (getDirection() + 90)%360;
 		setDirection(newDirection);
 		

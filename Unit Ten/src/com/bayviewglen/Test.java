@@ -11,7 +11,7 @@ public class Test {
 		Bug b2 = new Bug(Color.RED, DIRECTION.WEST, new Location(2,2), g);
 		Rock r2 = new Rock(Color.RED, DIRECTION.EAST, new Location(1,1), g);
 		Flower f1 = new Flower(Color.YELLOW, DIRECTION.EAST, new Location(4,5), g);
-		
+		GrassHopper g1 = new GrassHopper(Color.RED, DIRECTION.EAST, new Location(1,0), g);
 		while(true){
 			g.display();
 			g.step(); 
