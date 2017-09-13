@@ -11,8 +11,8 @@ public class Homework6 {
 		
 		double root1, root2;
 		
-		root1 = (-b + Math.sqrt(b*b - 4*a*c))/2*a;
-		root2 = (-b - Math.sqrt(b*b - 4*a*c))/2*a;
+		root1 = (-b + Math.sqrt(b*b - 4*a*c))/(2*a);
+		root2 = (-b - Math.sqrt(b*b - 4*a*c))/(2*a);
 		
 		System.out.println("The roots are: " + root1 + " and " + root2);	// The roots are: 77.4341649025257 and -17.434164902525687
 
